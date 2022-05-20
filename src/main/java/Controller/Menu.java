@@ -15,7 +15,7 @@ public class Menu {
             switch (choice) {
                 case 1: listazas(); break;
                 //case 2 -> tantargyFelvetel();
-                //case 3 -> targyleadas();
+                //case 3 -> tantargyleadas();
                 //case 4 -> felevLepes();
                 //case 5- > szamito();
             }

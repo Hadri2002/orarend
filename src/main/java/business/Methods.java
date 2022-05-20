@@ -3,18 +3,17 @@ package business;
 import business.os.Tantargy;
 import fio.Fio;
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.InputMismatchException;
 
 public class Methods {
 
-    private static final Scanner scn = new Scanner(System.in);
-
-
     public static void felvehetoKiiratas (ArrayList<FelvehetoTantargy> targyak) {
         for(FelvehetoTantargy targy: targyak) {
+            /*for(int i = 0; i < Fio.felvettTantargyak.size(); i++) {
+                Fio.felvettTantargyak.get(i).getNev()
+            }*/
+            //meg kéne nézni hogy fel van-e már véve / teljesítve van-e, ha nem akkor kiiratni!
             System.out.println(targy);
         }
     }
@@ -31,6 +30,9 @@ public class Methods {
         }
     }
 
+    public static void tantargyFelvetel() {
+
+    }
 
 
 }
