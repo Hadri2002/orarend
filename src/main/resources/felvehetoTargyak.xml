@@ -1,20 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<tantargyak>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tantargyak xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <tantargy>
         <nev>Elemi lineáris algebra</nev>
         <kredit>5</kredit>
-        <elofelteteles>false</elofelteteles>
-        <elofeltetel>NINCS</elofeltetel>
-    </tantargy>
-    <tantargy>
-        <nev>Numerikus módszerek I.</nev>
-        <kredit>5</kredit>
-        <elofelteteles>true</elofelteteles>
-        <elofeltetel>Elemi lineáris algebra</elofeltetel>
-    </tantargy>
-    <tantargy>
-        <nev>Matematikai logika</nev>
-        <kredit>2</kredit>
         <elofelteteles>false</elofelteteles>
         <elofeltetel>NINCS</elofeltetel>
     </tantargy>
@@ -23,6 +11,18 @@
         <kredit>3</kredit>
         <elofelteteles>false</elofelteteles>
         <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Matematikai logika</nev>
+        <kredit>2</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Numerikus módszerek I.</nev>
+        <kredit>5</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Elemi lineáris algebra</elofeltetel>
     </tantargy>
     <tantargy>
         <nev>Numerikus módszerek II.</nev>
@@ -45,14 +45,14 @@
     <tantargy>
         <nev>Diszkrét matematika II.</nev>
         <kredit>5</kredit>
-        <elofelteteles>true</elofelteteles>
-        <elofeltetel>Diszkrét matematika I.</elofeltetel>
-    </tantargy>
-    <tantargy>
-        <nev>Számításelmélet, számítástudomány</nev>
-        <kredit>6</kredit>
         <elofelteteles>false</elofelteteles>
         <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Számításelméleti, számítástudományi alapismeretek</nev>
+        <kredit>6</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Diszkrét matematika I.</elofeltetel>
     </tantargy>
     <tantargy>
         <nev>Elemi programozás</nev>
@@ -60,7 +60,340 @@
         <elofelteteles>false</elofelteteles>
         <elofeltetel>NINCS</elofeltetel>
     </tantargy>
-
-<tantargy><nev>progmod</nev><kredit>1</kredit><elofelteteles>false</elofelteteles><elofeltetel>NINCS</elofeltetel></tantargy>
-
+    <tantargy>
+        <nev>Programozás I.</nev>
+        <kredit>6</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Programozás II.</nev>
+        <kredit>6</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Programozás I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Fordítóprogramok és assemblerek</nev>
+        <kredit>2</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Algoritmusok, adatszerkezetek</nev>
+        <kredit>5</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Formális nyelvek, automaták</nev>
+        <kredit>5</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Relációs adatbázisok</nev>
+        <kredit>5</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>A programozás módszertana I.</nev>
+        <kredit>6</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Programozás I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Rendszertervezés</nev>
+        <kredit>4</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Operációs rendszerek</nev>
+        <kredit>5</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Számítógép architektúrák</nev>
+        <kredit>2</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Számítógép hálózatok</nev>
+        <kredit>6</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Informatikai biztonság</nev>
+        <kredit>3</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Informatikai rendszerek üzemeltetése</nev>
+        <kredit>3</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Meterséges intelligencia alapjai</nev>
+        <kredit>3</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Vezérlés- és irányítástechnológia</nev>
+        <kredit>4</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Kalkulus I.</nev>
+        <kredit>5</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Kalkulus II.</nev>
+        <kredit>5</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Kalkulus I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Analízis 1.</nev>
+        <kredit>5</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Analízis 2.</nev>
+        <kredit>5</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Analízis I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Webprogramozás I.</nev>
+        <kredit>6</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Programozás módszertana I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Korszerű adatbázis rendszerek</nev>
+        <kredit>3</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>A programozás módszertana II.</nev>
+        <kredit>6</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Programozás módszertana I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Szoftverfejlesztési technológiák</nev>
+        <kredit>5</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Programozás módszertana I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Frontend keretrendszerek</nev>
+        <kredit>3</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Programozás módszertana I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Analízis 3.</nev>
+        <kredit>4</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Analízis 2 vagy Kalkulus II.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Analízis 4.</nev>
+        <kredit>5</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Analízis 3 vagy Kalkulus II.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Analízis 5.</nev>
+        <kredit>3</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Analízis 4 vagy Kalkulus II.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Komplex függvénytan</nev>
+        <kredit>4</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Analízis 5 vagy Kalkulus II.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Fejezetek a Lineáris Algebrából</nev>
+        <kredit>5</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Elemi lineáris algebra</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Mobiltechnológia</nev>
+        <kredit>6</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Webprogramozás II.</nev>
+        <kredit>5</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Webprogramozás I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Kiadványszerkesztési alapok</nev>
+        <kredit>3</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Biorobotika</nev>
+        <kredit>4</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Mikrokontrollerek programozása</nev>
+        <kredit>4</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>MATLAB I.</nev>
+        <kredit>3</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>MATLAB II.</nev>
+        <kredit>2</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>CAD I</nev>
+        <kredit>2</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>CAD II</nev>
+        <kredit>2</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>LabView alapismeretek</nev>
+        <kredit>3</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>LabView II.</nev>
+        <kredit>3</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Bevezetés a Maxima használatába</nev>
+        <kredit>2</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Vizualizáció</nev>
+        <kredit>3</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Számítógépes grafika</nev>
+        <kredit>2</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Neurális hálózatok</nev>
+        <kredit>2</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Haladó Python programozás</nev>
+        <kredit>3</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Elemi programozás</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>C# alapok</nev>
+        <kredit>3</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Programozás módszertana I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Kódelmélet</nev>
+        <kredit>5</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Elemi lineáris algebra </elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Számítógépes játékfejlesztés</nev>
+        <kredit>2</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Dokumentumszerkesztés LaTex segítségével</nev>
+        <kredit>3</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>IT Life (Openminds)</nev>
+        <kredit>4</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Programozási nyelvek</nev>
+        <kredit>4</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Osztott rendszerek, párhuzamos programozás</nev>
+        <kredit>3</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Szakmai kommunikáció</nev>
+        <kredit>3</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>SAP ABAP Programozás</nev>
+        <kredit>4</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Programozás módszertana I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Vaadin backend-frontend keretrendszer</nev>
+        <kredit>4</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Programozás módszertana I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Android alapok</nev>
+        <kredit>4</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
 </tantargyak>
