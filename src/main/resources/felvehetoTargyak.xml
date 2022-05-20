@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<tantargyak>
+    <tantargy>
+        <nev>Elemi lineáris algebra</nev>
+        <kredit>5</kredit>
+        <elofeltetel></elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Numerikus módszerek I.</nev>
+        <kredit>5</kredit>
+        <elofeltetel>Elemi lineáris algebra</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Matematikai logika</nev>
+        <kredit>2</kredit>
+        <elofeltetel></elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Valószínűségszámítás és statisztika</nev>
+        <kredit>3</kredit>
+        <elofeltetel></elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Numerikus módszerek II.</nev>
+        <kredit>2</kredit>
+        <elofeltetel>Numerikus módszerek I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Operációkutatás</nev>
+        <kredit>3</kredit>
+        <elofeltetel>Elemi lineáris algebra</elofeltetel>
+    </tantargy>
+    <tantargy>
+        <nev>Diszkrét matematika I.</nev>
+        <kredit>6</kredit>
+        <elofeltetel></elofeltetel>
+    </tantargy>
+    <tantargy>
+            <nev>Diszkrét matematika II.</nev>
+            <kredit>5</kredit>
+            <elofeltetel>Diszkrét matematika I.</elofeltetel>
+    </tantargy>
+    <tantargy>
+            <nev>Számításelmélet, számítástudomány</nev>
+            <kredit>6</kredit>
+            <elofeltetel></elofeltetel>
+    </tantargy>
+</tantargyak>
