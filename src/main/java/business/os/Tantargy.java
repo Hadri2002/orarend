@@ -1,11 +1,12 @@
-package orarend.business.os;
+package business.os;
 
-import orarend.business.GetterFunctionName;
+import business.GetterFunctionName;
 
 public class Tantargy {
 
     public static final String felvehetoFajlnev = "src/main/resources/felvehetoTargyak.xml";
     public static final String teljesitettFajlnev = "src/main/resources/teljesitettTargyak.xml";
+    public static final String felvettFajlnev = "src/main/resources/felvettTargyak.xml";
 
     @GetterFunctionName(name="getNev")
     private String nev;

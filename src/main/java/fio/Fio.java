@@ -1,8 +1,10 @@
-package orarend.fio;
+package fio;
 
-import orarend.business.FelvehetoTantargy;
-import orarend.business.GetterFunctionName;
-import orarend.business.os.Tantargy;
+import business.FelvehetoTantargy;
+import business.GetterFunctionName;
+import business.OsztalyzatEnum;
+import business.TeljesitettTantargy;
+import business.os.Tantargy;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -21,8 +23,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static orarend.business.os.Tantargy.felvehetoFajlnev;
-
+import static business.os.Tantargy.felvehetoFajlnev;
+import static business.os.Tantargy.teljesitettFajlnev;
+import static business.os.Tantargy.felvettFajlnev;
 public class Fio <T>{
 
      /*public void beolvasas(T entity) {
@@ -111,6 +114,96 @@ public class Fio <T>{
 
                     }
                 }
+
+        }
+        catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return tantargyak;
+    }
+
+    public static ArrayList<TeljesitettTantargy> beolvasasTeljesitett() {
+
+        ArrayList<TeljesitettTantargy> tantargyak = new ArrayList<>();
+
+        try{
+            Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(teljesitettFajlnev);
+            Element rootElement = document.getDocumentElement();
+
+            NodeList childNodesList = rootElement.getChildNodes();
+            Node node;
+
+            for(int i = 0; i < childNodesList.getLength(); i++) {
+                node = childNodesList.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    NodeList childNodesOfTantargyTag = node.getChildNodes();
+
+                    String nev = "", kredit = "", osztalyzat = "";
+                    for(int j = 0; j < childNodesOfTantargyTag.getLength(); j++) {
+                        if(childNodesOfTantargyTag.item(j).getNodeType() == Node.ELEMENT_NODE) {
+                            switch(childNodesOfTantargyTag.item(j).getNodeName()) {
+                                case "nev": nev = childNodesOfTantargyTag.item(j).getTextContent(); break;
+                                case "kredit": kredit = childNodesOfTantargyTag.item(j).getTextContent(); break;
+                                case "osztalyzat": osztalyzat = childNodesOfTantargyTag.item(j).getTextContent(); break;
+                            }
+
+
+                        }
+                    }
+
+                    TeljesitettTantargy tantargy = new TeljesitettTantargy(nev, Integer.parseInt(kredit), OsztalyzatEnum.valueOf(osztalyzat));
+                    tantargyak.add(tantargy);
+
+                }
+            }
+
+        }
+        catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return tantargyak;
+    }
+
+    public static ArrayList<Tantargy> beolvasFelvett() {
+        ArrayList<Tantargy> tantargyak = new ArrayList<>();
+
+        try{
+            Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(felvettFajlnev);
+            Element rootElement = document.getDocumentElement();
+
+            NodeList childNodesList = rootElement.getChildNodes();
+            Node node;
+
+            for(int i = 0; i < childNodesList.getLength(); i++) {
+                node = childNodesList.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    NodeList childNodesOfTantargyTag = node.getChildNodes();
+
+                    String nev = "", kredit = "";
+                    for(int j = 0; j < childNodesOfTantargyTag.getLength(); j++) {
+                        if(childNodesOfTantargyTag.item(j).getNodeType() == Node.ELEMENT_NODE) {
+                            switch(childNodesOfTantargyTag.item(j).getNodeName()) {
+                                case "nev": nev = childNodesOfTantargyTag.item(j).getTextContent(); break;
+                                case "kredit": kredit = childNodesOfTantargyTag.item(j).getTextContent(); break;
+                            }
+
+
+                        }
+                    }
+
+                    Tantargy tantargy = new Tantargy(nev, Integer.parseInt(kredit));
+                    tantargyak.add(tantargy);
+
+                }
+            }
 
         }
         catch (ParserConfigurationException e) {

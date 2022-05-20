@@ -1,4 +1,4 @@
-package orarend.business;
+package business;
 
 public enum OsztalyzatEnum {
 

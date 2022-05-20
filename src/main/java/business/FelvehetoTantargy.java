@@ -1,7 +1,7 @@
-package orarend.business;
+package business;
 
-import orarend.business.os.Tantargy;
-import orarend.fio.Fio;
+import business.os.Tantargy;
+import fio.Fio;
 
 public class FelvehetoTantargy extends Tantargy {
 
