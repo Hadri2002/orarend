@@ -33,4 +33,8 @@ public class Tantargy {
         return kredit;
     }
 
+    @Override
+    public String toString() {
+        return "Név: " + this.nev + "\r\nKredit: " + this.kredit;
+    }
 }

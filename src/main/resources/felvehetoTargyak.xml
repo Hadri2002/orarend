@@ -1,48 +1,65 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<tantargyak>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><tantargyak>
     <tantargy>
         <nev>Elemi lineáris algebra</nev>
         <kredit>5</kredit>
-        <elofeltetel></elofeltetel>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
     </tantargy>
     <tantargy>
         <nev>Numerikus módszerek I.</nev>
         <kredit>5</kredit>
+        <elofelteteles>true</elofelteteles>
         <elofeltetel>Elemi lineáris algebra</elofeltetel>
     </tantargy>
     <tantargy>
         <nev>Matematikai logika</nev>
         <kredit>2</kredit>
-        <elofeltetel></elofeltetel>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
     </tantargy>
     <tantargy>
         <nev>Valószínűségszámítás és statisztika</nev>
         <kredit>3</kredit>
-        <elofeltetel></elofeltetel>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
     </tantargy>
     <tantargy>
         <nev>Numerikus módszerek II.</nev>
         <kredit>2</kredit>
+        <elofelteteles>true</elofelteteles>
         <elofeltetel>Numerikus módszerek I.</elofeltetel>
     </tantargy>
     <tantargy>
         <nev>Operációkutatás</nev>
         <kredit>3</kredit>
+        <elofelteteles>true</elofelteteles>
         <elofeltetel>Elemi lineáris algebra</elofeltetel>
     </tantargy>
     <tantargy>
         <nev>Diszkrét matematika I.</nev>
         <kredit>6</kredit>
-        <elofeltetel></elofeltetel>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
     </tantargy>
     <tantargy>
-            <nev>Diszkrét matematika II.</nev>
-            <kredit>5</kredit>
-            <elofeltetel>Diszkrét matematika I.</elofeltetel>
+        <nev>Diszkrét matematika II.</nev>
+        <kredit>5</kredit>
+        <elofelteteles>true</elofelteteles>
+        <elofeltetel>Diszkrét matematika I.</elofeltetel>
     </tantargy>
     <tantargy>
-            <nev>Számításelmélet, számítástudomány</nev>
-            <kredit>6</kredit>
-            <elofeltetel></elofeltetel>
+        <nev>Számításelmélet, számítástudomány</nev>
+        <kredit>6</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
     </tantargy>
+    <tantargy>
+        <nev>Elemi programozás</nev>
+        <kredit>4</kredit>
+        <elofelteteles>false</elofelteteles>
+        <elofeltetel>NINCS</elofeltetel>
+    </tantargy>
+
+<tantargy><nev>progmod</nev><kredit>1</kredit><elofelteteles>false</elofelteteles><elofeltetel>NINCS</elofeltetel></tantargy>
+
 </tantargyak>

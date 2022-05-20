@@ -92,13 +92,23 @@ public class Fio <T>{
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     NodeList childNodesOfTantargyTag = node.getChildNodes();
 
+                    String nev = "", kredit = "", elofelteteles = "", elofeltetel = "";
                     for(int j = 0; j < childNodesOfTantargyTag.getLength(); j++) {
                         if(childNodesOfTantargyTag.item(j).getNodeType() == Node.ELEMENT_NODE) {
-
+                            switch(childNodesOfTantargyTag.item(j).getNodeName()) {
+                                case "nev": nev = childNodesOfTantargyTag.item(j).getTextContent(); break;
+                                case "kredit": kredit = childNodesOfTantargyTag.item(j).getTextContent(); break;
+                                case "elofelteteles": elofelteteles = childNodesOfTantargyTag.item(j).getTextContent(); break;
+                                case "elofeltetel": elofeltetel = childNodesOfTantargyTag.item(j).getTextContent(); break;
+                            }
 
 
                             }
                         }
+
+                    FelvehetoTantargy tantargy = new FelvehetoTantargy(nev, Integer.parseInt(kredit), Boolean.valueOf(elofelteteles), elofeltetel);
+                    tantargyak.add(tantargy);
+
                     }
                 }
 
@@ -126,6 +136,21 @@ public class Fio <T>{
              Document xml = db.parse(f);
              Element tantargy = xml.createElement("tantargy");
 
+             Field[] tulajdonsagok2 = superclazz.getDeclaredFields();
+             for (Field tul : tulajdonsagok2) {
+                 if(tul.getAnnotation(GetterFunctionName.class) != null){
+                     String gfn = tul.getAnnotation(GetterFunctionName.class).name();
+                     //előállítani a getter metódust:
+                     Method gm = clazz.getMethod(gfn);
+                     //Meghívni az entityre a method-ot:
+                     String ertek = gm.invoke(entity).toString();
+                     String valtozoNev = tul.getName();
+                     Element elem = xml.createElement(valtozoNev);
+                     elem.setTextContent(ertek);
+                     tantargy.appendChild(elem);
+                 }
+             }
+
              Field[] tulajdonsagok = clazz.getDeclaredFields();
              for(Field tul: tulajdonsagok) {
                  if(tul.getAnnotation(GetterFunctionName.class) != null){
@@ -141,23 +166,7 @@ public class Fio <T>{
                  }
              }
 
-             Field[] tulajdonsagok2 = superclazz.getDeclaredFields();
-
-             for (Field tul : tulajdonsagok2) {
-                 if(tul.getAnnotation(GetterFunctionName.class) != null){
-                     String gfn = tul.getAnnotation(GetterFunctionName.class).name();
-                     //előállítani a getter metódust:
-                     Method gm = clazz.getMethod(gfn);
-                     //Meghívni az entityre a method-ot:
-                     String ertek = gm.invoke(entity).toString();
-                     String valtozoNev = tul.getName();
-                     Element elem = xml.createElement(valtozoNev);
-                     elem.setTextContent(ertek);
-                     tantargy.appendChild(elem);
-                 }
-             }
-
-             tantargy.setAttribute("class", clazz.getSimpleName());
+             //tantargy.setAttribute("class", clazz.getSimpleName());
              xml.getFirstChild().appendChild(tantargy);
              TransformerFactory tf = TransformerFactory.newInstance();
              Transformer t = tf.newTransformer();

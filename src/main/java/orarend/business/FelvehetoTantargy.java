@@ -38,4 +38,14 @@ public class FelvehetoTantargy extends Tantargy {
         f.beolvasas(this);
     }*/
 
+    @Override
+    public String toString() {
+        if (this.elofelteteles == true){
+            return super.toString() + "\r\nElőfeltétel: " + this.elofeltetel + "\r\n\r\n";
+        }
+        else{
+            return super.toString() + "\r\n\r\n";
+        }
+
+    }
 }
