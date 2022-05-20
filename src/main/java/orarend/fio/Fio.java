@@ -121,7 +121,6 @@ public class Fio <T>{
         }
 
         return tantargyak;
-
     }
 
      public void mentes(T entity) {
@@ -179,9 +178,5 @@ public class Fio <T>{
              System.out.println("Hiba: " + ex.toString());
              System.out.println(Arrays.toString(ex.getStackTrace()));
          }
-
-
-
      }
-
 }

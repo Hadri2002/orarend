@@ -17,5 +17,8 @@ public class TeljesitettTantargy extends Tantargy {
         return osztalyzat;
     }
 
-
+    public void mentes(){
+        Fio<TeljesitettTantargy> t = new Fio<TeljesitettTantargy>();
+        t.mentes(this);
+    }
 }

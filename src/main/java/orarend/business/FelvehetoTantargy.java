@@ -1,6 +1,7 @@
 package orarend.business;
 
 import orarend.business.os.Tantargy;
+import orarend.fio.Fio;
 
 public class FelvehetoTantargy extends Tantargy {
 
@@ -31,7 +32,8 @@ public class FelvehetoTantargy extends Tantargy {
     }
 
     public  void mentes(){
-        Fio<>
+        Fio<FelvehetoTantargy> f = new Fio<FelvehetoTantargy>();
+        f.mentes(this);
     }
     /*public void beolvasas(){
         Fio<FelvehetoTantargy> f = new Fio<FelvehetoTantargy>();
