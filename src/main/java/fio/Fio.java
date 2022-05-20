@@ -28,6 +28,10 @@ import static business.os.Tantargy.teljesitettFajlnev;
 import static business.os.Tantargy.felvettFajlnev;
 public class Fio <T>{
 
+    public static ArrayList<FelvehetoTantargy> felvehetoTantargyak = Fio.beolvasasFelveheto();
+    public static ArrayList<TeljesitettTantargy> teljesitettTantargyak = Fio.beolvasasTeljesitett();
+    public static ArrayList<Tantargy> felvettTantargyak = Fio.beolvasFelvett();
+
      /*public void beolvasas(T entity) {
          Class clazz = entity.getClass();
          Class superclazz = clazz.getSuperclass();

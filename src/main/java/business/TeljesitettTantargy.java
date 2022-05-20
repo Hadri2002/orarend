@@ -21,4 +21,9 @@ public class TeljesitettTantargy extends Tantargy {
         Fio<TeljesitettTantargy> t = new Fio<TeljesitettTantargy>();
         t.mentes(this);
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\r\nOsztályzat: " + this.osztalyzat + "\r\n";
+    }
 }
