@@ -1,3 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><tantargyak>
-
-<tantargy><nev>Programozás II.</nev><kredit>6</kredit><elofelteteles>true</elofelteteles><elofeltetel>Programozás I.</elofeltetel></tantargy></tantargyak>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tantargyak>
+<tantargy>
+<nev>Szakmai kommunikáció</nev>
+<kredit>3</kredit>
+</tantargy>
+</tantargyak>

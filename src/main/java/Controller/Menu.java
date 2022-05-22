@@ -21,7 +21,10 @@ public class Menu {
                 case 2:
                     tantargyFelvetel();
                     break;
-                //case 3 -> tantargyleadas();
+                case 3:
+                    tantargyLeadas();
+                    break;
+
                 //case 4 -> felevLepes();
                 //case 5- > szamito();
             }
@@ -79,6 +82,14 @@ public class Menu {
                 "beírásával!");
         String felvenniKivantTargy = scn.nextLine();
         Methods.tantargyFelvetel(felvenniKivantTargy);
+    }
+
+    public static void tantargyLeadas(){
+        Methods.felvettKiiratas(Fio.felvettTantargyak);
+        System.out.println("A fenti felsorolt, felvett tantárgyai közül válassza ki a leadni kívánt tantárgyat a tárgy " +
+                "nevének beírásával!");
+        String leadniKivantTargy = scn.nextLine();
+        Methods.tantargyLeadas(leadniKivantTargy);
     }
 
 }
