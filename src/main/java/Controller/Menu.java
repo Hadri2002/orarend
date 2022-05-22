@@ -1,18 +1,15 @@
 package Controller;
 
-import business.FelvehetoTantargy;
 import business.Methods;
-import business.TeljesitettTantargy;
 import fio.Fio;
 
-import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static business.Methods.tantargyFelvetel;
+
 
 public class Menu {
-    private static Scanner scn = new Scanner(System.in);
+    private static final Scanner scn = new Scanner(System.in);
 
     public static void run() {
         int choice = -1;

@@ -1,12 +1,3 @@
-import business.FelvehetoTantargy;
-import business.Methods;
-import business.TeljesitettTantargy;
-import business.os.Tantargy;
-import fio.Fio;
-import java.util.InputMismatchException;
-
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main {
 

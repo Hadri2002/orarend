@@ -4,7 +4,6 @@ import business.os.Tantargy;
 import fio.Fio;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Methods {
 
@@ -38,7 +37,7 @@ public class Methods {
             if(felvenniKivantTargy.equals(tantargy.getNev())) {
                 tantargyLetezik = true;
 
-                if(tantargy.getElofelteteles() == true) {
+                if(tantargy.getElofelteteles()) {
                     boolean elofeltetelTeljesitve = false;
                     for(TeljesitettTantargy teljesitett: Fio.teljesitettTantargyak) {
                         if(tantargy.getElofeltetel().equals(teljesitett.getNev())) {
@@ -47,7 +46,7 @@ public class Methods {
                             break;
                         }
                     }
-                    if(elofeltetelTeljesitve == false) {
+                    if(!elofeltetelTeljesitve) {
                         System.err.println("A tárgyat nem veheti fel, mivel nem teljesítette annak előfeltételét!");
                         return;
                     }
@@ -60,7 +59,7 @@ public class Methods {
             }
         }
 
-        if(tantargyLetezik == false) {
+        if(!tantargyLetezik) {
             System.err.println("Nem létezik a beírt tantárgy!");
         }
     }
