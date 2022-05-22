@@ -33,7 +33,7 @@ public class FelvehetoTantargy extends Tantargy {
 
     public  void mentes(){
         Fio<FelvehetoTantargy> f = new Fio<FelvehetoTantargy>();
-        f.mentes(this);
+        f.mentes(this, Tantargy.felvettFajlnev);
     }
     /*public void beolvasas(){
         Fio<FelvehetoTantargy> f = new Fio<FelvehetoTantargy>();

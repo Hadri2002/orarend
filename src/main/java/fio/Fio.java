@@ -220,13 +220,13 @@ public class Fio <T>{
         return tantargyak;
     }
 
-     public void mentes(T entity) {
+     public void mentes(T entity, String fajlnev) {
 
          Class clazz = entity.getClass();
          Class superclazz = clazz.getSuperclass();
 
          try {
-             File f = new File(Tantargy.felvehetoFajlnev);
+             File f = new File(fajlnev);
              DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
              DocumentBuilder db = dbf.newDocumentBuilder();
              Document xml = db.parse(f);

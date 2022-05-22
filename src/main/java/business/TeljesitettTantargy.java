@@ -19,7 +19,7 @@ public class TeljesitettTantargy extends Tantargy {
 
     public void mentes(){
         Fio<TeljesitettTantargy> t = new Fio<TeljesitettTantargy>();
-        t.mentes(this);
+        t.mentes(this, Tantargy.teljesitettFajlnev);
     }
 
     @Override
