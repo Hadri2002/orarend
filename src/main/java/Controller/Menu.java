@@ -2,6 +2,7 @@ package Controller;
 
 import business.Methods;
 import fio.Fio;
+import jdk.internal.util.xml.impl.Input;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -11,7 +12,39 @@ import java.util.Scanner;
 public class Menu {
     private static final Scanner scn = new Scanner(System.in);
 
-    public static void run() {
+    public static void startup() {
+        if(Fio.felvettTantargyak.size() > 0 || Fio.teljesitettTantargyak.size() > 0) {
+            System.out.println("Üdvözöllek a tantárgyfelvételi programban!\r\nFolytatni kívánod az elmentett adatokkal?" +
+                    "\r\n0 - nem\r\n1 - igen");
+
+            int choice = -1;
+            try{
+                while(choice != 0 || choice != 1) {
+                    choice = scn.nextInt();
+                    scn.nextLine();
+                    if(choice == 0) {
+                        //vissza kell állítani a félévet 1-re!
+                        //törölni kell az xml-ből mindent is!
+                        Fio.felvettTantargyak.clear();
+                        Fio.teljesitettTantargyak.clear();
+                    }
+                    else if(choice == 1) {
+                        break;
+                    }
+                    else System.err.println("Csak 0-t vagy 1-et adhat meg!");
+                }
+            }
+            catch(InputMismatchException e){
+                System.err.println("Csak számokat adhat meg!");
+                e.printStackTrace();
+            }
+
+
+        }
+        mainMenu();
+    }
+
+    public static void mainMenu() {
         int choice = -1;
         while (choice != 0) {
             switch (choice) {

@@ -13,11 +13,9 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import static business.os.Tantargy.felvettFajlnev;
-import static business.os.Tantargy.teljesitettFajlnev;
 
 public class Methods {
 
@@ -36,7 +34,7 @@ public class Methods {
                     }
                 }
             }
-            if(tantargyLetezik == false){
+            if(!tantargyLetezik){
                 System.out.println(targy);
             }
 

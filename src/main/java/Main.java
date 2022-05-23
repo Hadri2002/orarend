@@ -3,7 +3,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Controller.Menu.run();
+        Controller.Menu.startup();
 
         /*TeljesitettTantargy targy = new TeljesitettTantargy("programozás", 6, OsztalyzatEnum.ELEGSEGES);
         System.out.println(targy.getOsztalyzat());
