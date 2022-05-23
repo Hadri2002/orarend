@@ -61,8 +61,26 @@ public class Methods {
 
         for(FelvehetoTantargy tantargy: Fio.felvehetoTantargyak) {
 
-            if(felvenniKivantTargy.equals(tantargy.getNev())) {
+            if(felvenniKivantTargy.equals(tantargy.getNev())) { //tehát létezik a tantárgy a listázottak között
                 tantargyLetezik = true;
+
+                //meg kell nézni, hogy teljesítettük-e már!
+
+                for(TeljesitettTantargy teljesitett: Fio.teljesitettTantargyak) {
+                    if(teljesitett.getNev().equals(felvenniKivantTargy)) { //azaz ha már teljesítettük
+                        System.err.println("A tantárgyat már teljesítette, így nem veheti fel mégegyszer!");
+                        return;
+                    }
+                }
+
+                //és ha nem, akkor felvettük-e már?
+
+                for(Tantargy felvett: Fio.felvettTantargyak) {
+                    if(felvett.getNev().equals(felvenniKivantTargy)) {
+                        System.err.println("A tárgyat már felvette, így nem veheti fel mégegyszer!");
+                        return;
+                    }
+                }
 
                 if(tantargy.getElofelteteles()) {
                     boolean elofeltetelTeljesitve = false;
@@ -79,8 +97,9 @@ public class Methods {
                     }
                 }
 
-                Fio.felvettTantargyak.add(tantargy);
-                tantargy.mentes();
+                Tantargy felvettTantargy = new Tantargy(tantargy.getNev(), tantargy.getKredit());
+                Fio.felvettTantargyak.add(felvettTantargy);
+                felvettTantargy.mentes();
                 System.out.println("Sikeresen felvette a tantárgyat!");
                 break;
             }
@@ -102,6 +121,7 @@ public class Methods {
                     NodeList childElementsList = rootElement.getElementsByTagName("tantargy");
                     Node node = childElementsList.item(Fio.felvettTantargyak.indexOf(targy));
                     rootElement.removeChild(node);
+                    Fio.felvettTantargyak.remove(targy);
                     //felmerül a kérdés, hogy ilyenkor a felvetttargyak arraylistből is távolítsuk-e el
                     System.out.println("Sikeresen leadta a tantárgyat!");
 

@@ -1,6 +1,8 @@
 package business.os;
 
 import business.GetterFunctionName;
+import business.TeljesitettTantargy;
+import fio.Fio;
 
 public class Tantargy {
 
@@ -32,6 +34,11 @@ public class Tantargy {
 
     public Integer getKredit() {
         return kredit;
+    }
+
+    public void mentes(){
+        Fio<Tantargy> t = new Fio<Tantargy>();
+        t.mentes(this, Tantargy.felvettFajlnev);
     }
 
     @Override
