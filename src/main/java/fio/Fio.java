@@ -276,4 +276,64 @@ public class Fio <T>{
              System.out.println(Arrays.toString(ex.getStackTrace()));
          }
      }
+
+    /*public void mentes2(FelvehetoTantargy list, String fajlnev) {
+
+        Class clazz = list.get(0).getClass();
+        Class superclazz = clazz.getSuperclass();
+
+        try {
+            File f = new File(fajlnev);
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document xml = db.parse(f);
+            Element tantargy = xml.createElement("tantargy");
+
+            for(int i = 0; i < list.size(); i++) {
+                Field[] tulajdonsagok2 = superclazz.getDeclaredFields();
+                for (Field tul : tulajdonsagok2) {
+                    if(tul.getAnnotation(GetterFunctionName.class) != null){
+                        String gfn = tul.getAnnotation(GetterFunctionName.class).name();
+                        //előállítani a getter metódust:
+                        Method gm = clazz.getMethod(gfn);
+                        //Meghívni az entityre a method-ot:
+                        String ertek = gm.invoke(list.get(i)).toString();
+                        String valtozoNev = tul.getName();
+                        Element elem = xml.createElement(valtozoNev);
+                        elem.setTextContent(ertek);
+                        tantargy.appendChild(elem);
+                    }
+                }
+
+                Field[] tulajdonsagok = clazz.getDeclaredFields();
+                for(Field tul: tulajdonsagok) {
+                    if(tul.getAnnotation(GetterFunctionName.class) != null){
+                        String gfn = tul.getAnnotation(GetterFunctionName.class).name();
+                        //előállítani a getter metódust:
+                        Method gm = clazz.getMethod(gfn);
+                        //Meghívni az entityre a method-ot:
+                        String ertek = gm.invoke(list.get(i)).toString();
+                        String valtozoNev = tul.getName();
+                        Element elem = xml.createElement(valtozoNev);
+                        elem.setTextContent(ertek);
+                        tantargy.appendChild(elem);
+                    }
+                }
+            }
+
+
+            //tantargy.setAttribute("class", clazz.getSimpleName());
+            xml.getFirstChild().appendChild(tantargy);
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer t = tf.newTransformer();
+            DOMSource s = new DOMSource(xml);
+            StreamResult r = new StreamResult(f);
+            t.transform(s, r);
+
+        }
+        catch(Exception ex){
+            System.out.println("Hiba: " + ex.toString());
+            System.out.println(Arrays.toString(ex.getStackTrace()));
+        }
+    }*/
 }

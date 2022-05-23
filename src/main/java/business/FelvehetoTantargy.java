@@ -3,6 +3,8 @@ package business;
 import business.os.Tantargy;
 import fio.Fio;
 
+import java.util.ArrayList;
+
 public class FelvehetoTantargy extends Tantargy {
 
     @GetterFunctionName(name="getElofelteteles")
@@ -31,10 +33,12 @@ public class FelvehetoTantargy extends Tantargy {
 
     }
 
-    public  void mentes(){
+    public void mentes(){
         Fio<FelvehetoTantargy> f = new Fio<FelvehetoTantargy>();
         f.mentes(this, Tantargy.felvehetoFajlnev);
     }
+
+
     /*public void beolvasas(){
         Fio<FelvehetoTantargy> f = new Fio<FelvehetoTantargy>();
         f.beolvasas(this);
