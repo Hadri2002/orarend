@@ -86,6 +86,11 @@ public class Menu {
 
     public static void tantargyLeadas(){
         Methods.felvettKiiratas(Fio.felvettTantargyak);
+        //ellenőrzés, hogy egyeltalán van-e leadható tárgya, viszont szerintem csúnyán írja ki szóval ez talán megoldandó
+        if(Fio.felvettTantargyak.isEmpty()){
+            System.err.println("Önnek nincsen még felvett tantárgya!");
+            return;
+        }
         System.out.println("A fenti felsorolt, felvett tantárgyai közül válassza ki a leadni kívánt tantárgyat a tárgy " +
                 "nevének beírásával!");
         String leadniKivantTargy = scn.nextLine();
