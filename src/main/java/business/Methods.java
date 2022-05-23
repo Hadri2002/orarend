@@ -9,11 +9,10 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
@@ -100,32 +99,20 @@ public class Methods {
                 try{
                     Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(felvettFajlnev);
                     Element rootElement = document.getDocumentElement();
+                    NodeList childElementsList = rootElement.getElementsByTagName("tantargy");
+                    Node node = childElementsList.item(Fio.felvettTantargyak.indexOf(targy));
+                    rootElement.removeChild(node);
+                    //felmerül a kérdés, hogy ilyenkor a felvetttargyak arraylistből is távolítsuk-e el
+                    System.out.println("Sikeresen leadta a tantárgyat!");
 
-                    NodeList childNodesList = rootElement.getChildNodes();
-                    Node node;
+                    //változtatások mentése az xml fileba (elvileg szükséges, meglátjuk elhagyható-e) ->
+                    Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                    Result output = new StreamResult(new File(felvettFajlnev));
+                    Source input = new DOMSource(document);
 
-                    for(int i = 0; i < childNodesList.getLength(); i++) {
-                        node = childNodesList.item(i);
-                        if (node.getNodeType() == Node.ELEMENT_NODE) {
-                            NodeList childNodesOfTantargyTag = node.getChildNodes();
+                    transformer.transform(input, output);
+                    break;
 
-                            String nev = "";
-                            for(int j = 0; j < childNodesOfTantargyTag.getLength(); j++) {
-                                if(childNodesOfTantargyTag.item(j).getNodeType() == Node.ELEMENT_NODE) {
-                                    switch(childNodesOfTantargyTag.item(j).getNodeName()) {
-                                        case "nev":
-                                            nev = childNodesOfTantargyTag.item(j).getTextContent();
-                                            if(nev.equals(leadniKivantTargy)){
-                                                rootElement.removeChild(node);
-                                                Fio.felvettTantargyak.remove(targy);
-                                                System.out.println("Sikeresen leadta a tantárgyat!");
-                                                break;
-                                            }
-                                    }
-                                }
-                            }
-                        }
-                    }
                 }
                 catch (ParserConfigurationException e) {
                     e.printStackTrace();
@@ -136,48 +123,10 @@ public class Methods {
             }
         }
 
-        //Itt történik az xml fájlban a változtatások (törlés) mentése
-        try {
-            Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
-            Element rootElement = document.createElement("tantargyak");
-            document.appendChild(rootElement);
-
-
-            for (Tantargy targy : Fio.felvettTantargyak) {
-                Element targyElement = document.createElement("tantargy");
-                rootElement.appendChild(targyElement);
-
-                createChildElement(document, targyElement, "nev", targy.getNev());
-                createChildElement(document, targyElement, "kredit",String.valueOf(targy.getKredit()));
-            }
-
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-
-            DOMSource source = new DOMSource(document);
-            StreamResult result = new StreamResult(new FileOutputStream(felvettFajlnev));
-
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.transform(source, result);
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
         if(!tantargyLetezik) {
             System.err.println("Nem szerepel a beírt tantárgy a felvett tantárgyak között!");
         }
     }
-
-    private static void createChildElement(Document document, Element parent, String tagName, String value) {
-        Element element = document.createElement(tagName);
-        element.setTextContent(value);
-        parent.appendChild(element);
-    }
-
 }
 
 
