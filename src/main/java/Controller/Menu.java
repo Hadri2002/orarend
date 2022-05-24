@@ -2,10 +2,25 @@ package Controller;
 
 import business.Methods;
 import fio.Fio;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static business.os.Tantargy.felvettFajlnev;
+import static business.os.Tantargy.teljesitettFajlnev;
 
 
 public class Menu {
@@ -24,8 +39,51 @@ public class Menu {
                     if(choice == 0) {
                         //vissza kell állítani a félévet 1-re!
                         //törölni kell az xml-ből mindent is!
+                        //a törlés működik, rakjuk külön metódusba?
+                       try{
+                           Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(felvettFajlnev);
+                           Element rootElement = document.getDocumentElement();
+                           document.removeChild(rootElement);
+                           Node node = document.createElement("tantargyak");
+                           document.appendChild(node);
+
+                           Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                           Result output = new StreamResult(new File(felvettFajlnev));
+                           Source input = new DOMSource(document);
+
+                           transformer.transform(input, output);
+                       }
+                       catch (ParserConfigurationException ex) {
+                           ex.printStackTrace();
+                       }
+                       catch(Exception ex){
+                           ex.printStackTrace();
+                       }
+
+                        try{
+                            Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(teljesitettFajlnev);
+                            Element rootElement = document.getDocumentElement();
+                            document.removeChild(rootElement);
+                            Node node = document.createElement("tantargyak");
+                            document.appendChild(node);
+
+                            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                            Result output = new StreamResult(new File(teljesitettFajlnev));
+                            Source input = new DOMSource(document);
+
+                            transformer.transform(input, output);
+                        }
+                        catch (ParserConfigurationException ex) {
+                            ex.printStackTrace();
+                        }
+                        catch(Exception ex){
+                            ex.printStackTrace();
+                        }
+
+
                         Fio.felvettTantargyak.clear();
                         Fio.teljesitettTantargyak.clear();
+                        break;
                     }
                     else if(choice == 1) {
                         break;
@@ -57,7 +115,7 @@ public class Menu {
                     tantargyLeadas();
                     break;
 
-                //case 4 -> felevLepes();
+                //case 4 -> felevLepes(); Tárgyteljesítés is itt lesz?
                 //case 5- > szamito();
             }
             System.out.println("1 - Tantárgyak listázása\r\n2 - Új tantárgy felvétele\r\n3 - Tantárgy leadása\r\n4 - Félév teljesítése\r\n5 - Átlag/KKI számítás\r\n");

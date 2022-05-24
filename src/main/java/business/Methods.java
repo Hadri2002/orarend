@@ -120,10 +120,10 @@ public class Methods {
                     Node node = childElementsList.item(Fio.felvettTantargyak.indexOf(targy));
                     rootElement.removeChild(node);
                     Fio.felvettTantargyak.remove(targy);
-                    //felmerül a kérdés, hogy ilyenkor a felvetttargyak arraylistből is távolítsuk-e el
+
                     System.out.println("Sikeresen leadta a tantárgyat!");
 
-                    //változtatások mentése az xml fileba (elvileg szükséges, meglátjuk elhagyható-e) ->
+                    //változtatások mentése az xml fileba (elvileg szükséges, meglátjuk elhagyható-e) ->IGEN SZÜKSÉGES
                     Transformer transformer = TransformerFactory.newInstance().newTransformer();
                     Result output = new StreamResult(new File(felvettFajlnev));
                     Source input = new DOMSource(document);
