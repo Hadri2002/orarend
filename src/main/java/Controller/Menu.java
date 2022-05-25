@@ -15,6 +15,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -24,6 +25,7 @@ import static business.os.Tantargy.teljesitettFajlnev;
 
 public class Menu {
     private static final Scanner scn = new Scanner(System.in);
+
 
     public static void startup() {
         System.out.println("Üdvözöllek a tantárgyfelvételi programban!\r\n");
@@ -169,13 +171,13 @@ public class Menu {
         //meghívni Methods-ból a logikáját ahol kiszámolja
 
         int felev = -1;
-        while (felev < 1 || felev > Fio.felevBeolvasas()) {
+        while (felev < 1 || felev >= Fio.felevBeolvasas()) {
             System.out.println("Megkívánt félév: ");
             try {
                 felev = scn.nextInt();
                 scn.nextLine();
 
-                if (felev < 1 || felev > Fio.felevBeolvasas()){
+                if (felev < 1 || felev >= Fio.felevBeolvasas()){
                     System.out.println("Hibás félév!");
                 }
                 else {

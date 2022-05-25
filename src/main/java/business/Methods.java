@@ -13,6 +13,7 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -22,6 +23,7 @@ import static business.os.Tantargy.felvettFajlnev;
 public class Methods {
 
     private static Scanner scn = new Scanner(System.in);
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public static void felvehetoKiiratas (ArrayList<FelvehetoTantargy> felvehetoTargyak) {
         for(FelvehetoTantargy targy: felvehetoTargyak) {
@@ -226,7 +228,7 @@ public class Methods {
         Double sulyozottAtlag = atlagOsszeg / osszesTeljesitettKredit;
         Double kki = atlagOsszeg / 30.0 * osszesTeljesitettKredit / osszesVallaltKredit;
 
-        System.out.println("\r\nSúlyozott átlag: " + sulyozottAtlag + "\r\nKKI: " + kki + "\r\n");
+        System.out.println("\r\nSúlyozott átlag: " + df.format(sulyozottAtlag) + "\r\nKKI: " + df.format(kki) + "\r\n");
 
     }
 

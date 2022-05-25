@@ -3,18 +3,48 @@
   <tantargy>
     <nev>Programozás I.</nev>
     <kredit>6</kredit>
-    <osztalyzat>ELEGTELEN</osztalyzat>
+    <osztalyzat>JO</osztalyzat>
     <felev>1</felev>
   </tantargy>
 <tantargy>
-    <nev>Android alapok</nev>
-    <kredit>4</kredit>
-    <osztalyzat>KOZEPES</osztalyzat>
+    <nev>Elemi lineáris algebra</nev>
+    <kredit>5</kredit>
+    <osztalyzat>JELES</osztalyzat>
     <felev>1</felev>
   </tantargy>
 <tantargy>
     <nev>Diszkrét matematika I.</nev>
     <kredit>6</kredit>
+    <osztalyzat>JELES</osztalyzat>
+    <felev>1</felev>
+  </tantargy>
+<tantargy>
+    <nev>Elemi programozás</nev>
+    <kredit>4</kredit>
+    <osztalyzat>JELES</osztalyzat>
+    <felev>1</felev>
+  </tantargy>
+<tantargy>
+    <nev>Formális nyelvek, automaták</nev>
+    <kredit>5</kredit>
+    <osztalyzat>JELES</osztalyzat>
+    <felev>1</felev>
+  </tantargy>
+<tantargy>
+    <nev>Kalkulus I.</nev>
+    <kredit>5</kredit>
+    <osztalyzat>JELES</osztalyzat>
+    <felev>1</felev>
+  </tantargy>
+<tantargy>
+    <nev>Számítógép architektúrák</nev>
+    <kredit>2</kredit>
+    <osztalyzat>JELES</osztalyzat>
+    <felev>1</felev>
+  </tantargy>
+<tantargy>
+    <nev>Matematikai logika</nev>
+    <kredit>2</kredit>
     <osztalyzat>JELES</osztalyzat>
     <felev>1</felev>
   </tantargy>
