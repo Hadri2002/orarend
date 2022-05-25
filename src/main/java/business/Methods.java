@@ -65,8 +65,8 @@ public class Methods {
                 //meg kell nézni, hogy teljesítettük-e már!
 
                 for(TeljesitettTantargy teljesitett: Fio.teljesitettTantargyak) {
-                    if(teljesitett.getNev().equals(felvenniKivantTargy)) { //azaz ha már teljesítettük
-                        System.err.println("A tantárgyat már teljesítette, így nem veheti fel mégegyszer!");
+                    if(teljesitett.getNev().equals(felvenniKivantTargy) && teljesitett.getOsztalyzat().getErtek() != 1) { //azaz ha már teljesítettük és nem buktunk meg belőle
+                        System.err.println("\r\nA tantárgyat már teljesítette, így nem veheti fel mégegyszer!\r\n");
                         return;
                     }
                 }
@@ -75,7 +75,7 @@ public class Methods {
 
                 for(Tantargy felvett: Fio.felvettTantargyak) {
                     if(felvett.getNev().equals(felvenniKivantTargy)) {
-                        System.err.println("A tárgyat már felvette, így nem veheti fel mégegyszer!");
+                        System.err.println("\r\nA tárgyat már felvette, így nem veheti fel mégegyszer!\r\n");
                         return;
                     }
                 }

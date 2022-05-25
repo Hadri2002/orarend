@@ -67,27 +67,32 @@ public class Menu {
     public static void mainMenu() {
         int choice = -1;
         while (choice != 0) {
-            switch (choice) {
-                case 1:
-                    listazas();
-                    break;
-                case 2:
-                    tantargyFelvetel();
-                    break;
-                case 3:
-                    tantargyLeadas();
-                    break;
 
-                //case 4 -> felevLepes(); Tárgyteljesítés is itt lesz?
-                //case 5- > szamito();
-            }
             System.out.println("1 - Tantárgyak listázása\r\n2 - Új tantárgy felvétele\r\n3 - Tantárgy leadása\r\n4 - Félév teljesítése\r\n5 - Átlag/KKI számítás\r\n");
-            System.out.println("0 - Kilépés");
+            System.out.println("0 - Kilépés\n");
             try {
                 choice = scn.nextInt();
                 scn.nextLine();
-                if (choice < 0 || choice > 5) {
-                    System.err.println("A menüpontok 0 és 5 között vannak!");
+
+                switch (choice) {
+                    case 0:
+                        break;
+                    case 1:
+                        listazas();
+                        break;
+                    case 2:
+                        tantargyFelvetel();
+                        break;
+                    case 3:
+                        tantargyLeadas();
+                        break;
+                    case 4: felevLepes();
+                        break;
+                    case 5: kiszamito();
+                        break;
+                    default:
+                        System.err.println("A menüpontok 0 és 5 között vannak!\r\n");
+                        break;
                 }
             } catch (InputMismatchException ex) {
                 System.err.println("Csak számokat adhat meg!\r\n");

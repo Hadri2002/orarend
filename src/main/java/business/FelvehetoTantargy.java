@@ -38,7 +38,6 @@ public class FelvehetoTantargy extends Tantargy {
         f.mentes(this, Tantargy.felvehetoFajlnev);
     }
 
-
     /*public void beolvasas(){
         Fio<FelvehetoTantargy> f = new Fio<FelvehetoTantargy>();
         f.beolvasas(this);
@@ -47,7 +46,7 @@ public class FelvehetoTantargy extends Tantargy {
     @Override
     public String toString() {
         if (this.elofelteteles == true){
-            return super.toString() + "\r\nElőfeltétel: " + this.elofeltetel + "\r\n";
+            return super.toString() + "Előfeltétel: " + this.elofeltetel + "\r\n";
         }
         else{
             return super.toString();

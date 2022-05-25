@@ -110,8 +110,8 @@ public class Fio <T>{
                             }
 
 
-                            }
                         }
+                    }
 
                     FelvehetoTantargy tantargy = new FelvehetoTantargy(nev, Integer.parseInt(kredit), Boolean.valueOf(elofelteteles), elofeltetel);
                     tantargyak.add(tantargy);
@@ -155,8 +155,6 @@ public class Fio <T>{
                                 case "osztalyzat": osztalyzat = childNodesOfTantargyTag.item(j).getTextContent(); break;
                                 case "felev": felev = childNodesOfTantargyTag.item(j).getTextContent(); break;
                             }
-
-
                         }
                     }
 

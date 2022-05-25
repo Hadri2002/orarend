@@ -9,6 +9,7 @@ public class Tantargy {
     public static final String felvehetoFajlnev = "src/main/resources/felvehetoTargyak.xml";
     public static final String teljesitettFajlnev = "src/main/resources/teljesitettTargyak.xml";
     public static final String felvettFajlnev = "src/main/resources/felvettTargyak.xml";
+    public static final String felevFajlnev = "src/main/resources/felev.xml";
 
     @GetterFunctionName(name="getNev")
     private String nev;
@@ -43,6 +44,6 @@ public class Tantargy {
 
     @Override
     public String toString() {
-        return "Név: " + this.nev + "\r\nKredit: " + this.kredit;
+        return "Név: " + this.nev + "\r\nKredit: " + this.kredit + "\n";
     }
 }
