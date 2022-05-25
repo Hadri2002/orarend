@@ -50,7 +50,7 @@ public class FelvehetoTantargy extends Tantargy {
             return super.toString() + "\r\nElőfeltétel: " + this.elofeltetel + "\r\n";
         }
         else{
-            return super.toString() + "\r\n";
+            return super.toString();
         }
 
     }

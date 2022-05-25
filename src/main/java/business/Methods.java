@@ -21,17 +21,17 @@ public class Methods {
 
     public static void felvehetoKiiratas (ArrayList<FelvehetoTantargy> felvehetoTargyak) {
         for(FelvehetoTantargy targy: felvehetoTargyak) {
-            boolean tantargyLetezik = false;
+            boolean tantargyLetezik = false; //false, ha ki kéne írni!
             for(Tantargy targy2 : Fio.felvettTantargyak){
-                if(targy.getNev().equals(targy2.getNev())){
+                if(targy.getNev().equals(targy2.getNev())) {
                     tantargyLetezik = true;
                     break;
                 }
-                for(TeljesitettTantargy targy3 : Fio.teljesitettTantargyak) {
-                    if(targy.getNev().equals(targy3.getNev())){
-                        tantargyLetezik = true;
-                        break;
-                    }
+            }
+            for(TeljesitettTantargy targy3 : Fio.teljesitettTantargyak) { //akkor legyen true, ha benne van a teljesítettek között és nem egyest kapott?
+                if(targy.getNev().equals(targy3.getNev()) && targy3.getOsztalyzat().getErtek() != 1){
+                    tantargyLetezik = true;
+                    break;
                 }
             }
             if(!tantargyLetezik){
@@ -90,7 +90,7 @@ public class Methods {
                         }
                     }
                     if(!elofeltetelTeljesitve) {
-                        System.err.println("A tárgyat nem veheti fel, mivel nem teljesítette annak előfeltételét!");
+                        System.err.println("\r\nA tárgyat nem veheti fel, mivel nem teljesítette annak előfeltételét!\r\n");
                         return;
                     }
                 }
@@ -104,7 +104,7 @@ public class Methods {
         }
 
         if(!tantargyLetezik) {
-            System.err.println("Nem létezik a beírt tantárgy!");
+            System.err.println("\r\nNem létezik a beírt tantárgy!\r\n");
         }
     }
 
@@ -145,6 +145,87 @@ public class Methods {
             System.err.println("Nem szerepel a beírt tantárgy a felvett tantárgyak között!");
         }
     }
+
+    public static void felevLepes() {
+
+        //végig kéne menni a felvett tantárgyakon
+        for(Tantargy targy : Fio.felvettTantargyak){
+            //while-ba kéne! osztalyzat < 1 || osztalyzat > 5
+            boolean helyesOsztalyzat = false;
+
+            while(helyesOsztalyzat == false) {
+                System.out.println("Adja meg hányast kapott az adott tárgyból!");
+                System.out.println(targy.getNev() + "");
+                try {
+                    System.out.println("Osztályzat: ");
+                    int osztalyzatErtek = 0;
+                    //kéne ide egy try, breakelünk ha nem számot ad
+                    //akkor is kéne egy break ha nem 1-5-ig van a szám!
+                    osztalyzatErtek = scn.nextInt();
+                    scn.nextLine();
+
+                    if(osztalyzatErtek < 1 || osztalyzatErtek > 5) {
+                        System.err.println("Az érdemjegyek 1 és 5 közötti értékek!");
+                    }
+                    else {
+                        OsztalyzatEnum osztalyzat = OsztalyzatEnum.ELEGTELEN;
+
+                        for (OsztalyzatEnum erdemjegy : OsztalyzatEnum.values()) {
+                            if (osztalyzatErtek == erdemjegy.getErtek()) {
+                                osztalyzat = erdemjegy;
+                            }
+                        }
+
+                        TeljesitettTantargy tantargy = new TeljesitettTantargy(targy.getNev(), targy.getKredit(), osztalyzat, Fio.felev);
+                        tantargy.mentes();
+                        helyesOsztalyzat = true;
+                    }
+
+                }
+                catch(InputMismatchException ex){
+                    System.err.println("Számot adjon meg osztályzatként!");
+                    scn.nextLine();
+                }
+
+            }
+        }
+        Fio.xmlTorles(felvettFajlnev);
+        Fio.felvettTantargyak.clear();
+        Fio.teljesitettTantargyak = Fio.beolvasasTeljesitett();
+        Fio.felev++;
+        Fio.felevMentes(Fio.felev);
+
+    }
+
+    public static void kiszamito(Integer felev) {
+        //végig kéne menni for ciklussal a teljesített tárgyakon hogy megkeressük az adott félévi tantárgyakat
+        //súlyozott? átlag kiszámoláshoz sum teljesitett kredit * erdemjegy (atlagosszeg) / osszes teljesitett kredit
+        //KKI: kreditindex * osszes teljesitett kredit / osszes vallalt kredit
+        //kreditindex: sum teljesitett kredit * erdemjegy / 30
+
+        Double osszesTeljesitettKredit = 0.0, osszesVallaltKredit = 0.0, atlagOsszeg = 0.0;
+
+        for(TeljesitettTantargy tantargy: Fio.teljesitettTantargyak) {
+            if(tantargy.getFelev() == felev) {
+
+                osszesVallaltKredit += tantargy.getKredit();
+
+
+                if(tantargy.getOsztalyzat().getErtek() != 1) {
+                    atlagOsszeg += (tantargy.getKredit() * tantargy.getOsztalyzat().getErtek());
+                    osszesTeljesitettKredit += tantargy.getKredit();
+
+                }
+            }
+        }
+
+        Double sulyozottAtlag = atlagOsszeg / osszesTeljesitettKredit;
+        Double kki = atlagOsszeg / 30.0 * osszesTeljesitettKredit / osszesVallaltKredit;
+
+        System.out.println("\r\nSúlyozott átlag: " + sulyozottAtlag + "\r\nKKI: " + kki + "\r\n");
+
+    }
+
 }
 
 

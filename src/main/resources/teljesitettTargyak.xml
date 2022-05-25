@@ -1,1 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><tantargyak/>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tantargyak>
+  <tantargy>
+    <nev>Programozás I.</nev>
+    <kredit>6</kredit>
+    <osztalyzat>ELEGTELEN</osztalyzat>
+    <felev>1</felev>
+  </tantargy>
+<tantargy>
+    <nev>Android alapok</nev>
+    <kredit>4</kredit>
+    <osztalyzat>KOZEPES</osztalyzat>
+    <felev>1</felev>
+  </tantargy>
+<tantargy>
+    <nev>Diszkrét matematika I.</nev>
+    <kredit>6</kredit>
+    <osztalyzat>JELES</osztalyzat>
+    <felev>1</felev>
+  </tantargy>
+</tantargyak>

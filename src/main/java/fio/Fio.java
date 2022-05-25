@@ -23,11 +23,11 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static business.os.Tantargy.felvehetoFajlnev;
-import static business.os.Tantargy.teljesitettFajlnev;
-import static business.os.Tantargy.felvettFajlnev;
+import static business.os.Tantargy.*;
+
 public class Fio <T>{
 
+    public static Integer felev = Fio.felevBeolvasas();
     public static ArrayList<FelvehetoTantargy> felvehetoTantargyak = Fio.beolvasasFelveheto();
     public static ArrayList<TeljesitettTantargy> teljesitettTantargyak = Fio.beolvasasTeljesitett();
     public static ArrayList<Tantargy> felvettTantargyak = Fio.beolvasFelvett();
@@ -146,20 +146,22 @@ public class Fio <T>{
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     NodeList childNodesOfTantargyTag = node.getChildNodes();
 
-                    String nev = "", kredit = "", osztalyzat = "";
+                    String nev = "", kredit = "", osztalyzat = "", felev = "";
                     for(int j = 0; j < childNodesOfTantargyTag.getLength(); j++) {
                         if(childNodesOfTantargyTag.item(j).getNodeType() == Node.ELEMENT_NODE) {
                             switch(childNodesOfTantargyTag.item(j).getNodeName()) {
                                 case "nev": nev = childNodesOfTantargyTag.item(j).getTextContent(); break;
                                 case "kredit": kredit = childNodesOfTantargyTag.item(j).getTextContent(); break;
                                 case "osztalyzat": osztalyzat = childNodesOfTantargyTag.item(j).getTextContent(); break;
+                                case "felev": felev = childNodesOfTantargyTag.item(j).getTextContent(); break;
                             }
 
 
                         }
                     }
 
-                    TeljesitettTantargy tantargy = new TeljesitettTantargy(nev, Integer.parseInt(kredit), OsztalyzatEnum.valueOf(osztalyzat));
+                    TeljesitettTantargy tantargy = new TeljesitettTantargy(nev, Integer.parseInt(kredit),
+                            OsztalyzatEnum.valueOf(osztalyzat), Integer.parseInt(felev));
                     tantargyak.add(tantargy);
 
                 }
@@ -230,6 +232,7 @@ public class Fio <T>{
              DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
              DocumentBuilder db = dbf.newDocumentBuilder();
              Document xml = db.parse(f);
+             xml.setXmlStandalone(true);
              Element tantargy = xml.createElement("tantargy");
 
              Field[] tulajdonsagok2 = superclazz.getDeclaredFields();
@@ -266,6 +269,12 @@ public class Fio <T>{
              xml.getFirstChild().appendChild(tantargy);
              TransformerFactory tf = TransformerFactory.newInstance();
              Transformer t = tf.newTransformer();
+             t.setOutputProperty(OutputKeys.STANDALONE, "yes");
+             t.setOutputProperty(OutputKeys.INDENT, "yes");
+             t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+
+
+
              DOMSource s = new DOMSource(xml);
              StreamResult r = new StreamResult(f);
              t.transform(s, r);
@@ -274,6 +283,75 @@ public class Fio <T>{
          catch(Exception ex){
              System.out.println("Hiba: " + ex.toString());
              System.out.println(Arrays.toString(ex.getStackTrace()));
+         }
+     }
+
+     public static Integer felevBeolvasas() {
+        Integer felev = -1;
+
+         try {
+             Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(felevFajlnev);
+             Element rootElement = document.getDocumentElement();
+
+             return Integer.parseInt(rootElement.getTextContent());
+
+         }
+         catch (ParserConfigurationException e) {
+             e.printStackTrace();
+         }
+         catch (Exception e) {
+             e.printStackTrace();
+         }
+
+        return felev;
+     }
+
+     public static void felevMentes(Integer felev) {
+         try {
+             Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(felevFajlnev);
+             document.setXmlStandalone(true);
+             Element rootElement = document.getDocumentElement();
+             rootElement.setTextContent(felev.toString());
+
+
+             Transformer transformer = TransformerFactory.newInstance().newTransformer();
+             transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
+             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+
+
+             Result output = new StreamResult(new File(felevFajlnev));
+             Source input = new DOMSource(document);
+
+             transformer.transform(input, output);
+
+
+         } catch (ParserConfigurationException e) {
+             e.printStackTrace();
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+     }
+
+     public static void xmlTorles(String fajlnev){
+         try{
+             Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fajlnev);
+             Element rootElement = document.getDocumentElement();
+             document.removeChild(rootElement);
+             Node node = document.createElement("tantargyak");
+             document.appendChild(node);
+
+             Transformer transformer = TransformerFactory.newInstance().newTransformer();
+             Result output = new StreamResult(new File(fajlnev));
+             Source input = new DOMSource(document);
+
+             transformer.transform(input, output);
+         }
+         catch (ParserConfigurationException ex) {
+             ex.printStackTrace();
+         }
+         catch(Exception ex){
+             ex.printStackTrace();
          }
      }
 

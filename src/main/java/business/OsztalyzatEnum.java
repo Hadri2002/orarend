@@ -10,7 +10,7 @@ public enum OsztalyzatEnum {
         this.osztalyzat = osztalyzat;
     }
 
-    public Integer getOsztalyzat() {
+    public Integer getErtek() {
         return this.osztalyzat;
     }
 

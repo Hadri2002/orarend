@@ -5,7 +5,6 @@ import fio.Fio;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -27,10 +26,10 @@ public class Menu {
     private static final Scanner scn = new Scanner(System.in);
 
     public static void startup() {
-        if(Fio.felvettTantargyak.size() > 0 || Fio.teljesitettTantargyak.size() > 0) {
-            System.out.println("Üdvözöllek a tantárgyfelvételi programban!\r\nFolytatni kívánod az elmentett adatokkal?" +
-                    "\r\n0 - nem\r\n1 - igen");
+        System.out.println("Üdvözöllek a tantárgyfelvételi programban!\r\n");
 
+        if(Fio.felvettTantargyak.size() > 0 || Fio.teljesitettTantargyak.size() > 0) {
+            System.out.println("Folytatni kívánod az elmentett adatokkal?\r\n0 - nem\r\n1 - igen");
             int choice = -1;
             try{
                 while(choice != 0 || choice != 1) {
@@ -38,48 +37,12 @@ public class Menu {
                     scn.nextLine();
                     if(choice == 0) {
                         //vissza kell állítani a félévet 1-re!
-                        //törölni kell az xml-ből mindent is!
-                        //a törlés működik, rakjuk külön metódusba?
-                       try{
-                           Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(felvettFajlnev);
-                           Element rootElement = document.getDocumentElement();
-                           document.removeChild(rootElement);
-                           Node node = document.createElement("tantargyak");
-                           document.appendChild(node);
-
-                           Transformer transformer = TransformerFactory.newInstance().newTransformer();
-                           Result output = new StreamResult(new File(felvettFajlnev));
-                           Source input = new DOMSource(document);
-
-                           transformer.transform(input, output);
-                       }
-                       catch (ParserConfigurationException ex) {
-                           ex.printStackTrace();
-                       }
-                       catch(Exception ex){
-                           ex.printStackTrace();
-                       }
-
-                        try{
-                            Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(teljesitettFajlnev);
-                            Element rootElement = document.getDocumentElement();
-                            document.removeChild(rootElement);
-                            Node node = document.createElement("tantargyak");
-                            document.appendChild(node);
-
-                            Transformer transformer = TransformerFactory.newInstance().newTransformer();
-                            Result output = new StreamResult(new File(teljesitettFajlnev));
-                            Source input = new DOMSource(document);
-
-                            transformer.transform(input, output);
-                        }
-                        catch (ParserConfigurationException ex) {
-                            ex.printStackTrace();
-                        }
-                        catch(Exception ex){
-                            ex.printStackTrace();
-                        }
-
+                        Fio.felev = 1;
+                        Fio.felevMentes(Fio.felev);
+                    //törölni kell az xml-ből mindent is!
+                        //a törlés működik, rakjuk külön metódusba? lehet az Fio inkább
+                        Fio.xmlTorles(felvettFajlnev);
+                        Fio.xmlTorles(teljesitettFajlnev);
 
                         Fio.felvettTantargyak.clear();
                         Fio.teljesitettTantargyak.clear();
@@ -127,7 +90,7 @@ public class Menu {
                     System.err.println("A menüpontok 0 és 5 között vannak!");
                 }
             } catch (InputMismatchException ex) {
-                System.err.println("A menüpontok 0 és 5 között vannak!");
+                System.err.println("Csak számokat adhat meg!\r\n");
                 scn.nextLine();
             }
         }
@@ -185,6 +148,42 @@ public class Menu {
                 "nevének beírásával!");
         String leadniKivantTargy = scn.nextLine();
         Methods.tantargyLeadas(leadniKivantTargy);
+    }
+
+    public static void felevLepes(){
+        System.out.println("Teljesítette a(z) " + Fio.felev + ". félévet!\r\nKérem adja meg az összes tantárgy esetében az " +
+                "elért érdemjegyét:\r\n");
+        Methods.felevLepes();
+    }
+
+    public static void kiszamito() {
+        System.out.println("Adja meg, hogy melyik félévének átlagát és KKI-ját kívánja megtekinteni: ");
+
+        //try catch integerrel adja meg a kívánt félévet
+        //csekkolni hogy létezik-e az a félév? while ciklussal elsőtől mostaniig
+        //meghívni Methods-ból a logikáját ahol kiszámolja
+
+        int felev = -1;
+        while (felev < 1 || felev > Fio.felevBeolvasas()) {
+            System.out.println("Megkívánt félév: ");
+            try {
+                felev = scn.nextInt();
+                scn.nextLine();
+
+                if (felev < 1 || felev > Fio.felevBeolvasas()){
+                    System.out.println("Hibás félév!");
+                }
+                else {
+                    Methods.kiszamito(felev);
+                }
+
+            } catch (InputMismatchException ex) {
+                System.err.println("Csak számokat adhat meg!\r\n");
+                scn.nextLine();
+            }
+        }
+
+
     }
 
 }

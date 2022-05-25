@@ -24,6 +24,6 @@ public class TeljesitettTantargy extends Tantargy {
 
     @Override
     public String toString() {
-        return super.toString() + "\r\nOsztályzat: " + this.osztalyzat + "\r\n";
+        return super.toString() + "Osztályzat: " + this.osztalyzat + "\r\n";
     }
 }
