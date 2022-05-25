@@ -14,10 +14,14 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import static business.os.Tantargy.felvettFajlnev;
 
 public class Methods {
+
+    private static Scanner scn = new Scanner(System.in);
 
     public static void felvehetoKiiratas (ArrayList<FelvehetoTantargy> felvehetoTargyak) {
         for(FelvehetoTantargy targy: felvehetoTargyak) {
@@ -98,7 +102,7 @@ public class Methods {
                 Tantargy felvettTantargy = new Tantargy(tantargy.getNev(), tantargy.getKredit());
                 Fio.felvettTantargyak.add(felvettTantargy);
                 felvettTantargy.mentes();
-                System.out.println("Sikeresen felvette a tantárgyat!");
+                System.out.println("\r\nSikeresen felvette a tantárgyat!\r\n");
                 break;
             }
         }
