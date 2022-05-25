@@ -8,7 +8,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -16,13 +15,14 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 import static business.os.Tantargy.felvettFajlnev;
 
 public class Methods {
 
-    private static Scanner scn = new Scanner(System.in);
+    private static final Scanner scn = new Scanner(System.in);
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public static void felvehetoKiiratas (ArrayList<FelvehetoTantargy> felvehetoTargyak) {
@@ -137,12 +137,8 @@ public class Methods {
                     transformer.transform(input, output);
                     break;
 
-                }
-                catch (ParserConfigurationException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
-                }
-                catch(Exception ex){
-                    ex.printStackTrace();
                 }
             }
         }
@@ -159,12 +155,12 @@ public class Methods {
             //while-ba kéne! osztalyzat < 1 || osztalyzat > 5
             boolean helyesOsztalyzat = false;
 
-            while(helyesOsztalyzat == false) {
+            while(!helyesOsztalyzat) {
                 System.out.println("Adja meg hányast kapott az adott tárgyból!");
                 System.out.println(targy.getNev() + "");
                 try {
                     System.out.println("Osztályzat: ");
-                    int osztalyzatErtek = 0;
+                    int osztalyzatErtek;
                     //kéne ide egy try, breakelünk ha nem számot ad
                     //akkor is kéne egy break ha nem 1-5-ig van a szám!
                     osztalyzatErtek = scn.nextInt();
@@ -209,10 +205,10 @@ public class Methods {
         //KKI: kreditindex * osszes teljesitett kredit / osszes vallalt kredit
         //kreditindex: sum teljesitett kredit * erdemjegy / 30
 
-        Double osszesTeljesitettKredit = 0.0, osszesVallaltKredit = 0.0, atlagOsszeg = 0.0;
+        double osszesTeljesitettKredit = 0.0, osszesVallaltKredit = 0.0, atlagOsszeg = 0.0;
 
         for(TeljesitettTantargy tantargy: Fio.teljesitettTantargyak) {
-            if(tantargy.getFelev() == felev) {
+            if(Objects.equals(tantargy.getFelev(), felev)) {
 
                 osszesVallaltKredit += tantargy.getKredit();
 
