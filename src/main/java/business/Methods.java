@@ -127,9 +127,9 @@ public class Methods {
                     rootElement.removeChild(node);
                     Fio.felvettTantargyak.remove(targy);
 
-                    System.out.println("Sikeresen leadta a tantárgyat!");
+                    System.out.println("\r\nSikeresen leadta a tantárgyat!\r\n");
 
-                    //változtatások mentése az xml fileba (elvileg szükséges, meglátjuk elhagyható-e) ->IGEN SZÜKSÉGES
+                    //változtatások mentése az xml fileba
                     Transformer transformer = TransformerFactory.newInstance().newTransformer();
                     Result output = new StreamResult(new File(felvettFajlnev));
                     Source input = new DOMSource(document);
@@ -148,7 +148,7 @@ public class Methods {
         }
 
         if(!tantargyLetezik) {
-            System.err.println("Nem szerepel a beírt tantárgy a felvett tantárgyak között!");
+            System.err.println("\r\nNem szerepel a beírt tantárgy a felvett tantárgyak között!\r\n");
         }
     }
 
@@ -171,7 +171,7 @@ public class Methods {
                     scn.nextLine();
 
                     if(osztalyzatErtek < 1 || osztalyzatErtek > 5) {
-                        System.err.println("Az érdemjegyek 1 és 5 közötti értékek!");
+                        System.err.println("\r\nAz érdemjegyek 1 és 5 közötti értékek!\r\n");
                     }
                     else {
                         OsztalyzatEnum osztalyzat = OsztalyzatEnum.ELEGTELEN;
@@ -189,7 +189,7 @@ public class Methods {
 
                 }
                 catch(InputMismatchException ex){
-                    System.err.println("Számot adjon meg osztályzatként!");
+                    System.err.println("\r\nSzámot adjon meg osztályzatként!\r\n");
                     scn.nextLine();
                 }
 

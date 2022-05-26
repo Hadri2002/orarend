@@ -15,6 +15,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.sql.SQLOutput;
 import java.text.DecimalFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -29,39 +30,40 @@ public class Menu {
 
     public static void startup() {
         System.out.println("Üdvözöllek a tantárgyfelvételi programban!\r\n");
+        System.out.println("Ön jelenleg a "+Fio.felev+". félévben van.\r\n");
 
         if(Fio.felvettTantargyak.size() > 0 || Fio.teljesitettTantargyak.size() > 0) {
-            System.out.println("Folytatni kívánod az elmentett adatokkal?\r\n0 - nem\r\n1 - igen");
             int choice = -1;
-            try{
-                while(choice != 0 || choice != 1) {
+            while(choice!=0 && choice!=1){
+                System.out.println("Folytatni kívánod az elmentett adatokkal?\r\n0 - Nem\r\n1 - Igen");
+                try{
                     choice = scn.nextInt();
                     scn.nextLine();
-                    if(choice == 0) {
-                        //vissza kell állítani a félévet 1-re!
-                        Fio.felev = 1;
-                        Fio.felevMentes(Fio.felev);
-                    //törölni kell az xml-ből mindent is!
-                        //a törlés működik, rakjuk külön metódusba? lehet az Fio inkább
-                        Fio.xmlTorles(felvettFajlnev);
-                        Fio.xmlTorles(teljesitettFajlnev);
 
-                        Fio.felvettTantargyak.clear();
-                        Fio.teljesitettTantargyak.clear();
-                        break;
+                    switch (choice){
+                        case 0:
+                            //vissza kell állítani a félévet 1-re!
+                            Fio.felev = 1;
+                            Fio.felevMentes(Fio.felev);
+                            //törölni kell az xml-ből mindent is!
+                            Fio.xmlTorles(felvettFajlnev);
+                            Fio.xmlTorles(teljesitettFajlnev);
+                            Fio.felvettTantargyak.clear();
+                            Fio.teljesitettTantargyak.clear();
+                            break;
+                        case 1:
+                            break;
+                        default:
+                            System.err.println("\r\nA menüpontok 0 és 1 között vannak!\r\n");
+                            break;
                     }
-                    else if(choice == 1) {
-                        break;
-                    }
-                    else System.err.println("Csak 0-t vagy 1-et adhat meg!");
+
+                }catch (InputMismatchException ex) {
+                    System.err.println("\r\nCsak számokat adhat meg!\r\n");
+                    scn.nextLine();
                 }
-            }
-            catch(InputMismatchException e){
-                System.err.println("Csak számokat adhat meg!");
-                e.printStackTrace();
-            }
 
-
+            }
         }
         mainMenu();
     }
@@ -70,7 +72,7 @@ public class Menu {
         int choice = -1;
         while (choice != 0) {
 
-            System.out.println("1 - Tantárgyak listázása\r\n2 - Új tantárgy felvétele\r\n3 - Tantárgy leadása\r\n4 - Félév teljesítése\r\n5 - Átlag/KKI számítás\r\n");
+            System.out.println("\r\n1 - Tantárgyak listázása\r\n2 - Új tantárgy felvétele\r\n3 - Tantárgy leadása\r\n4 - Félév teljesítése\r\n5 - Átlag/KKI számítás\r\n");
             System.out.println("0 - Kilépés\n");
             try {
                 choice = scn.nextInt();
@@ -93,11 +95,11 @@ public class Menu {
                     case 5: kiszamito();
                         break;
                     default:
-                        System.err.println("A menüpontok 0 és 5 között vannak!\r\n");
+                        System.err.println("\r\nA menüpontok 0 és 5 között vannak!\r\n");
                         break;
                 }
             } catch (InputMismatchException ex) {
-                System.err.println("Csak számokat adhat meg!\r\n");
+                System.err.println("\r\nCsak számokat adhat meg!\r\n");
                 scn.nextLine();
             }
         }
@@ -125,10 +127,10 @@ public class Menu {
                 choice = scn.nextInt();
                 scn.nextLine();
                 if (choice < 0 || choice > 3) {
-                    System.err.println("A menüpontok 0 és 3 között vannak!");
+                    System.err.println("\r\nA menüpontok 0 és 3 között vannak!\r\n");
                 }
             } catch (InputMismatchException ex) {
-                System.err.println("A menüpontok 0 és 3 között vannak!");
+                System.err.println("\r\nA menüpontok 0 és 3 között vannak!\r\n");
                 scn.nextLine();
             }
 
@@ -148,7 +150,7 @@ public class Menu {
         Methods.felvettKiiratas(Fio.felvettTantargyak);
         //ellenőrzés, hogy egyeltalán van-e leadható tárgya, viszont szerintem csúnyán írja ki szóval ez talán megoldandó
         if(Fio.felvettTantargyak.isEmpty()){
-            System.err.println("Önnek nincsen még felvett tantárgya!");
+            System.err.println("\r\nÖnnek nincsen még felvett tantárgya!\r\n");
             return;
         }
         System.out.println("A fenti felsorolt, felvett tantárgyai közül válassza ki a leadni kívánt tantárgyat a tárgy " +
@@ -178,14 +180,14 @@ public class Menu {
                 scn.nextLine();
 
                 if (felev < 1 || felev >= Fio.felevBeolvasas()){
-                    System.out.println("Hibás félév!");
+                    System.err.println("\r\nHibás félév!\r\n");
                 }
                 else {
                     Methods.kiszamito(felev);
                 }
 
             } catch (InputMismatchException ex) {
-                System.err.println("Csak számokat adhat meg!\r\n");
+                System.err.println("\r\nCsak számokat adhat meg!\r\n");
                 scn.nextLine();
             }
         }
