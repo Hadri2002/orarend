@@ -88,7 +88,7 @@ Osztályok
 
 
 XML fájlok
-—----
+-------
 
 **felev.xml**
 **felvehetoTargyak.xml**
