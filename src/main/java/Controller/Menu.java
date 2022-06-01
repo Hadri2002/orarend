@@ -144,9 +144,39 @@ public class Menu {
     }
 
     public static void felevLepes(){
-        System.out.println("Teljesítette a(z) " + Fio.felev + ". félévet!\r\nKérem adja meg az összes tantárgy esetében az " +
-                "elért érdemjegyét:\r\n");
-        Methods.felevLepes();
+        int choice = -1;
+        while (choice != 0 && choice!=1) {
+            System.out.println("Ezen menüpont segítségével befejezi az adott félévet és meg kell adnia minden felvett " +
+                    "tárgyból elért érdemjegyét!\r\n");
+            System.out.println("Biztos benne, hogy folytatja?\r\n");
+            System.out.println("1 - Folytatás\r\n0 - Mégse");
+            try{
+                choice = scn.nextInt();
+                scn.nextLine();
+
+                switch(choice){
+                    case 0:
+                        return;
+                    case 1:
+                        System.out.println("\r\nTeljesítette a(z) " + Fio.felev + ". félévet!\r\n");
+
+                        if(Fio.felvettTantargyak.size() > 0) {
+                            System.out.println("Kérem adja meg az összes tantárgy esetében az elért érdemjegyét:\r\n");
+                        }
+
+                        Methods.felevLepes();
+                        break;
+                    default:
+                        System.err.println("A menüpontok 0 és 1 között vannak!\r\n");
+                        break;
+                }
+            }
+            catch(InputMismatchException ex){
+                System.err.println("Csak számokat adhat meg!\r\n");
+                scn.nextLine();
+            }
+        }
+
     }
 
     public static void kiszamito() {
