@@ -95,7 +95,7 @@ A generikus XML mentésben segédkező osztály
 **Menu**
 
 *Feladat:*
-*Felhasználóval való kapcsolattartás, user interface kezelése
+* Felhasználóval való kapcsolattartás, user interface kezelése
 
 *Metódusok:*
 * startup
@@ -120,7 +120,7 @@ A generikus XML mentésben segédkező osztály
 **Fio**
 
 *Feladat:*
-*Input, output műveletek (mentés, beolvasás, stb) végrehajtása
+* Input, output műveletek (mentés, beolvasás, stb) végrehajtása
 
 *Metódusok:*
 * beolvasasFelveheto
