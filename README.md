@@ -19,7 +19,7 @@ Ez a package tartalmazza a fájl írással, illetve olvasással kapcsolatos met�
 
 A business package adja meg a program logikai alapját, ez végzi el az összes műveletet
 
-Osztályai:
+*Osztályai:*
 * FelvehetoTantargy
 * TeljesitettTantargy
 * OsztalyzatEnum
@@ -30,19 +30,19 @@ Osztályai:
 
 A business package-en belüli ős package
 
-Osztályai:
+*Osztályai:*
 * Tantargy
 
 **Controller**
 
 A User Interface kezelésével foglalkozó package
 
-Osztályok:
+*Osztályai:*
 * Menu
 
 
 Osztályok
-—----
+------
 
 **Tantargy, FelvehetoTantargy, TeljesitettTantargy**
 
