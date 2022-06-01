@@ -157,7 +157,7 @@ public class Methods {
 
     public static void felevLepes() {
 
-        if(!Fio.felvettTantargyak.isEmpty()) {
+        if(Fio.felvettTantargyak.size() > 0) {
             for(Tantargy targy : Fio.felvettTantargyak){
                 boolean helyesOsztalyzat = false;  //false amíg megfelelő osztályzatot nem ad meg a felhasználó
 
