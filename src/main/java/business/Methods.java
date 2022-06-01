@@ -193,27 +193,47 @@ public class Methods {
     }
 
     public static void kiszamito(Integer felev) {
-        double osszesTeljesitettKredit = 0.0, osszesVallaltKredit = 0.0, atlagOsszeg = 0.0;
 
-        for(TeljesitettTantargy tantargy: Fio.teljesitettTantargyak) {
-            if(Objects.equals(tantargy.getFelev(), felev)) {
+            double osszesTeljesitettKredit = 0.0, osszesVallaltKredit = 0.0, atlagOsszeg = 0.0;
 
-                osszesVallaltKredit += tantargy.getKredit();
+            for(TeljesitettTantargy tantargy: Fio.teljesitettTantargyak) {
+                if(Objects.equals(tantargy.getFelev(), felev)) {
 
-                if(tantargy.getOsztalyzat().getErtek() != 1) {
-                    atlagOsszeg += (tantargy.getKredit() * tantargy.getOsztalyzat().getErtek());
-                    osszesTeljesitettKredit += tantargy.getKredit();
+                    osszesVallaltKredit += tantargy.getKredit();
 
+                    if(tantargy.getOsztalyzat().getErtek() != 1) {
+                        atlagOsszeg += (tantargy.getKredit() * tantargy.getOsztalyzat().getErtek());
+                        osszesTeljesitettKredit += tantargy.getKredit();
+
+                    }
                 }
             }
+            Double sulyozottAtlag = 0.0;
+            Double kki = 0.0;
+            try{
+                sulyozottAtlag = atlagOsszeg / osszesTeljesitettKredit;
+            }
+            catch(Exception e) {
+                System.out.println("A teljesített kreditek száma 0, amivel nem tud valójában számolni a rendszer!");
+            }
+
+            try{
+                kki = atlagOsszeg / 30.0 * osszesTeljesitettKredit / osszesVallaltKredit;
+            }
+            catch(Exception e) {
+                System.out.println("A vállalt kreditek száma 0, amivel nem tud valójában számolni a rendszer!");
+            }
+
+            if(osszesTeljesitettKredit == 0.0) {
+                sulyozottAtlag = 0.0;
+            }
+            if(osszesVallaltKredit == 0.0) {
+                kki = 0.0;
+            }
+
+            System.out.println("\r\nSúlyozott átlag: " + df.format(sulyozottAtlag) + "\r\nKKI: " + df.format(kki) + "\r\n");
         }
 
-        Double sulyozottAtlag = atlagOsszeg / osszesTeljesitettKredit;
-        Double kki = atlagOsszeg / 30.0 * osszesTeljesitettKredit / osszesVallaltKredit;
-
-        System.out.println("\r\nSúlyozott átlag: " + df.format(sulyozottAtlag) + "\r\nKKI: " + df.format(kki) + "\r\n");
-
-    }
 
 }
 

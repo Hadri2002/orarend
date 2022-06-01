@@ -14,9 +14,9 @@ public class Menu {
 
     public static void startup() {
         System.out.println("Üdvözöllek a tantárgyfelvételi programban!\r\n");
-        System.out.println("Ön jelenleg a "+Fio.felev+". félévben van.\r\n");
+        System.out.println("Ön jelenleg a(z) "+Fio.felev+". félévben van.\r\n");
 
-        if(Fio.felvettTantargyak.size() > 0 || Fio.teljesitettTantargyak.size() > 0) {
+        if(Fio.felvettTantargyak.size() > 0 || Fio.teljesitettTantargyak.size() > 0 || Fio.felev > 1) {
             int choice = -1;
             while(choice!=0 && choice!=1){
                 System.out.println("Folytatni kívánod az elmentett adatokkal?\r\n0 - Nem\r\n1 - Igen");
@@ -134,7 +134,7 @@ public class Menu {
     public static void tantargyLeadas(){
         Methods.felvettKiiratas(Fio.felvettTantargyak);
         if(Fio.felvettTantargyak.isEmpty()){
-            System.err.println("Önnek nincsen még felvett tantárgya!");
+            System.err.println("\r\nÖnnek nincsen még felvett tantárgya!\r\n");
             return;
         }
         System.out.println("A fenti felsorolt, felvett tantárgyai közül válassza ki a leadni kívánt tantárgyat a tárgy " +
@@ -150,30 +150,34 @@ public class Menu {
     }
 
     public static void kiszamito() {
-        System.out.println("Adja meg, hogy melyik félévének átlagát és KKI-ját kívánja megtekinteni: ");
-
-
-        int felev = -1;
-        while (felev < 1 || felev >= Fio.felevBeolvasas()) {
-            System.out.println("Megkívánt félév: ");
-            try {
-                felev = scn.nextInt();
-                scn.nextLine();
-
-                if (felev < 1 || felev >= Fio.felevBeolvasas()){
-                    System.err.println("Hibás félév!");
-                }
-                else {
-                    Methods.kiszamito(felev);
-                }
-
-            } catch (InputMismatchException ex) {
-                System.err.println("Csak számokat adhat meg!\r\n");
-                scn.nextLine();
-            }
+        if(Fio.felev == 1) {
+            System.err.println("\r\nMivel még nem teljesített félévet, így nincs átlag amit kiszámolhatna!\r\n");
         }
+        else {
+
+            System.out.println("Adja meg, hogy melyik félévének átlagát és KKI-ját kívánja megtekinteni: ");
 
 
+            int felev = -1;
+            while (felev < 1 || felev >= Fio.felevBeolvasas()) {
+                System.out.println("\r\nMegkívánt félév: ");
+                try {
+                    felev = scn.nextInt();
+                    scn.nextLine();
+
+                    if (felev < 1 || felev >= Fio.felevBeolvasas()) {
+                        System.err.println("\r\nHibás félév!\r\n");
+                    } else {
+                        Methods.kiszamito(felev);
+                    }
+
+                } catch (InputMismatchException ex) {
+                    System.err.println("\r\nCsak számokat adhat meg!\r\n");
+                    scn.nextLine();
+                }
+            }
+
+        }
     }
 
 }
