@@ -48,4 +48,10 @@
     <osztalyzat>JELES</osztalyzat>
     <felev>1</felev>
   </tantargy>
+<tantargy>
+    <nev>Android alapok</nev>
+    <kredit>4</kredit>
+    <osztalyzat>ELEGTELEN</osztalyzat>
+    <felev>2</felev>
+  </tantargy>
 </tantargyak>

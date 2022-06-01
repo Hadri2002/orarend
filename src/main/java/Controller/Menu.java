@@ -161,7 +161,7 @@ public class Menu {
                 scn.nextLine();
 
                 if (felev < 1 || felev >= Fio.felevBeolvasas()){
-                    System.out.println("Hibás félév!");
+                    System.err.println("Hibás félév!");
                 }
                 else {
                     Methods.kiszamito(felev);
