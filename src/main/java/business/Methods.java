@@ -49,14 +49,24 @@ public class Methods {
     }
 
     public static void felvettKiiratas (ArrayList<Tantargy> felvettTantargyak) {
+        if(felvettTantargyak.isEmpty()){
+            System.out.println("Nincsenek felvett tantárgyak!");
+        }
+        else {
             for(Tantargy felvettTantargy: felvettTantargyak) {
                 System.out.println(felvettTantargy);
             }
+        }
     }
 
     public static void teljesitettKiiratas (ArrayList<TeljesitettTantargy> teljesitettTantargyak) {
-        for(TeljesitettTantargy teljesitettTantargy: teljesitettTantargyak) {
-            System.out.println(teljesitettTantargy);
+        if (teljesitettTantargyak.isEmpty()){
+            System.out.println("Nincsenek teljesített tantárgyak!");
+        }
+        else{
+           for(TeljesitettTantargy teljesitettTantargy: teljesitettTantargyak) {
+               System.out.println(teljesitettTantargy);
+           }
         }
     }
 
