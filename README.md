@@ -99,21 +99,21 @@ A generikus XML mentésben segédkező osztály
 
 *Metódusok:*
 * startup
-    *Üdvözli a felhasználót
-    *A felhasználó eldöntheti, hogy új, vagy már meglévő adatokat szeretne használni
+    * Üdvözli a felhasználót
+    * A felhasználó eldöntheti, hogy új, vagy már meglévő adatokat szeretne használni
 * mainMenu
-    *Kilistázza az összes menüpontot a felhasználó számára
-    *Bekéri a felhasználó választását
+    * Kilistázza az összes menüpontot a felhasználó számára
+    * Bekéri a felhasználó választását
 * listazas
-    *Kilistázza a felvehető, felvett, vagy a teljesített tantárgyakat a felhasználó választása szerint
+    * Kilistázza a felvehető, felvett, vagy a teljesített tantárgyakat a felhasználó választása szerint
 * tantargyFelvetel
-    *Meghívja a Methods osztály tantargyFelvetel metódusát
+    * Meghívja a Methods osztály tantargyFelvetel metódusát
 * tantargyLeadas
-    *Meghívja a Methods osztály tantargyLeadas metódusát
+    * Meghívja a Methods osztály tantargyLeadas metódusát
 * felevLepes
-    *Meghívja a Methods osztály felevLepes metódusát
+    * Meghívja a Methods osztály felevLepes metódusát
 * kiszamito
-    *Meghívja a Methods osztály kiszamito metódusát
+    * Meghívja a Methods osztály kiszamito metódusát
 
 
 
