@@ -66,7 +66,7 @@ Osztályok
 
 **GetterFunctionName**
 
-
+A generikus XML mentésben segédkező osztály
 
 **Methods**
 
@@ -142,7 +142,7 @@ Osztályok
 
 
 XML fájlok
-—----
+------
 
 **felev.xml**
 
