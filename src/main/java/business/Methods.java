@@ -147,43 +147,47 @@ public class Methods {
 
     public static void felevLepes() {
 
-        for(Tantargy targy : Fio.felvettTantargyak){
-            boolean helyesOsztalyzat = false;  //false amíg megfelelő osztályzatot nem ad meg a felhasználó
+        if(!Fio.felvettTantargyak.isEmpty()) {
+            for(Tantargy targy : Fio.felvettTantargyak){
+                boolean helyesOsztalyzat = false;  //false amíg megfelelő osztályzatot nem ad meg a felhasználó
 
-            while(!helyesOsztalyzat) {
-                System.out.println("Adja meg hányast kapott az adott tárgyból!");
-                System.out.println(targy.getNev() + "");
-                try {
-                    System.out.println("Osztályzat: ");
-                    int osztalyzatErtek;
-                    osztalyzatErtek = scn.nextInt();
-                    scn.nextLine();
+                while(!helyesOsztalyzat) {
+                    System.out.println("Adja meg hányast kapott az adott tárgyból!");
+                    System.out.println(targy.getNev() + "");
+                    try {
+                        System.out.println("Osztályzat: ");
+                        int osztalyzatErtek;
+                        osztalyzatErtek = scn.nextInt();
+                        scn.nextLine();
 
-                    if(osztalyzatErtek < 1 || osztalyzatErtek > 5) {
-                        System.err.println("Az érdemjegyek 1 és 5 közötti értékek!");
-                    }
-                    else {
-                        OsztalyzatEnum osztalyzat = OsztalyzatEnum.ELEGTELEN;
+                        if(osztalyzatErtek < 1 || osztalyzatErtek > 5) {
+                            System.err.println("Az érdemjegyek 1 és 5 közötti értékek!");
+                        }
+                        else {
+                            OsztalyzatEnum osztalyzat = OsztalyzatEnum.ELEGTELEN;
 
-                        for (OsztalyzatEnum erdemjegy : OsztalyzatEnum.values()) {
-                            if (osztalyzatErtek == erdemjegy.getErtek()) {
-                                osztalyzat = erdemjegy;
+                            for (OsztalyzatEnum erdemjegy : OsztalyzatEnum.values()) {
+                                if (osztalyzatErtek == erdemjegy.getErtek()) {
+                                    osztalyzat = erdemjegy;
+                                }
                             }
+
+                            TeljesitettTantargy tantargy = new TeljesitettTantargy(targy.getNev(), targy.getKredit(), osztalyzat, Fio.felev);
+                            tantargy.mentes();
+                            helyesOsztalyzat = true;
                         }
 
-                        TeljesitettTantargy tantargy = new TeljesitettTantargy(targy.getNev(), targy.getKredit(), osztalyzat, Fio.felev);
-                        tantargy.mentes();
-                        helyesOsztalyzat = true;
+                    }
+                    catch(InputMismatchException ex){
+                        System.err.println("Számot adjon meg osztályzatként!");
+                        scn.nextLine();
                     }
 
                 }
-                catch(InputMismatchException ex){
-                    System.err.println("Számot adjon meg osztályzatként!");
-                    scn.nextLine();
-                }
-
             }
         }
+
+
         Fio.xmlTorles(felvettFajlnev);
         Fio.felvettTantargyak.clear();
         Fio.teljesitettTantargyak = Fio.beolvasasTeljesitett();

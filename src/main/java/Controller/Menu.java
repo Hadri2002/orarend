@@ -79,11 +79,11 @@ public class Menu {
                     case 5: kiszamito();
                         break;
                     default:
-                        System.err.println("A menüpontok 0 és 5 között vannak!\r\n");
+                        System.err.println("\r\nA menüpontok 0 és 5 között vannak!\r\n");
                         break;
                 }
             } catch (InputMismatchException ex) {
-                System.err.println("Csak számokat adhat meg!\r\n");
+                System.err.println("\r\nCsak számokat adhat meg!\r\n");
                 scn.nextLine();
             }
         }
@@ -112,10 +112,10 @@ public class Menu {
                 choice = scn.nextInt();
                 scn.nextLine();
                 if (choice < 0 || choice > 3) {
-                    System.err.println("A menüpontok 0 és 3 között vannak!");
+                    System.err.println("\r\nA menüpontok 0 és 3 között vannak!\r\n");
                 }
             } catch (InputMismatchException ex) {
-                System.err.println("A menüpontok 0 és 3 között vannak!");
+                System.err.println("\r\nA menüpontok 0 és 3 között vannak!\r\n");
                 scn.nextLine();
             }
 
