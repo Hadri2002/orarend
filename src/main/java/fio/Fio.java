@@ -31,57 +31,6 @@ public class Fio <T>{
     public static ArrayList<TeljesitettTantargy> teljesitettTantargyak = Fio.beolvasasTeljesitett();
     public static ArrayList<Tantargy> felvettTantargyak = Fio.beolvasFelvett();
 
-     /*public void beolvasas(T entity) {
-         Class clazz = entity.getClass();
-         Class superclazz = clazz.getSuperclass();
-         Field[] tulajdonsagok = clazz.getDeclaredFields();
-         Field[] tulajdonsagok2 = superclazz.getDeclaredFields();
-
-         ArrayList<T> tantargyak = new ArrayList<>();
-
-         try{
-             Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fajlnev);
-             Element rootElement = document.getDocumentElement();
-
-             NodeList childNodesList = rootElement.getChildNodes();
-             Node node;
-
-             for(int i = 0; i < childNodesList.getLength(); i++) {
-                 node = childNodesList.item(i);
-                 if (node.getNodeType() == Node.ELEMENT_NODE) {
-                     NodeList childNodesOfTantargyTag = node.getChildNodes();
-
-                     for(int j = 0; j < childNodesOfTantargyTag.getLength(); j++) {
-                        if(childNodesOfTantargyTag.item(j).getNodeType() == Node.ELEMENT_NODE) {
-                            //itt kéne megnézni hogy melyik tulajdonságot nézem éppen
-                            for(Field tulajdonsag: tulajdonsagok2) {
-                                if(childNodesOfTantargyTag.item(j).getNodeName().equals(tulajdonsag.getName())) {
-
-                                }
-                            }
-                            for(Field tulajdonsag: tulajdonsagok) {
-
-                                //megnézem hogy egyezik e a node neve a field nevével?
-                                //ha igen akkor lementem a tulajonságot?
-                                //amiből utána később létrehozom az objektumot
-                            }
-                        }
-                     }
-                 }
-             }
-
-
-         }
-         catch (ParserConfigurationException e) {
-             e.printStackTrace();
-         }
-         catch (Exception e) {
-             e.printStackTrace();
-         }
-
-     }
-    */
-
     public static ArrayList<FelvehetoTantargy> beolvasasFelveheto() {
 
         ArrayList<FelvehetoTantargy> tantargyak = new ArrayList<>();
@@ -107,7 +56,6 @@ public class Fio <T>{
                                 case "elofelteteles": elofelteteles = childNodesOfTantargyTag.item(j).getTextContent(); break;
                                 case "elofeltetel": elofeltetel = childNodesOfTantargyTag.item(j).getTextContent(); break;
                             }
-
 
                         }
                     }
@@ -232,15 +180,14 @@ public class Fio <T>{
              xml.setXmlStandalone(true);
              Element tantargy = xml.createElement("tantargy");
 
-             Field[] tulajdonsagok2 = superclazz.getDeclaredFields();
-             for (Field tul : tulajdonsagok2) {
-                 if(tul.getAnnotation(GetterFunctionName.class) != null){
-                     String gfn = tul.getAnnotation(GetterFunctionName.class).name();
-                     //előállítani a getter metódust:
+             Field[] osTulajdonsagok = superclazz.getDeclaredFields();
+             for (Field tulajdonsag : osTulajdonsagok) {
+                 if(tulajdonsag.getAnnotation(GetterFunctionName.class) != null){
+                     String gfn = tulajdonsag.getAnnotation(GetterFunctionName.class).name();
                      Method gm = clazz.getMethod(gfn);
-                     //Meghívni az entityre a method-ot:
                      String ertek = gm.invoke(entity).toString();
-                     String valtozoNev = tul.getName();
+                     String valtozoNev = tulajdonsag.getName();
+
                      Element elem = xml.createElement(valtozoNev);
                      elem.setTextContent(ertek);
                      tantargy.appendChild(elem);
@@ -248,21 +195,19 @@ public class Fio <T>{
              }
 
              Field[] tulajdonsagok = clazz.getDeclaredFields();
-             for(Field tul: tulajdonsagok) {
-                 if(tul.getAnnotation(GetterFunctionName.class) != null){
-                     String gfn = tul.getAnnotation(GetterFunctionName.class).name();
-                     //előállítani a getter metódust:
+             for(Field tulajdonsag: tulajdonsagok) {
+                 if(tulajdonsag.getAnnotation(GetterFunctionName.class) != null){
+                     String gfn = tulajdonsag.getAnnotation(GetterFunctionName.class).name();
                      Method gm = clazz.getMethod(gfn);
-                     //Meghívni az entityre a method-ot:
                      String ertek = gm.invoke(entity).toString();
-                     String valtozoNev = tul.getName();
+                     String valtozoNev = tulajdonsag.getName();
+
                      Element elem = xml.createElement(valtozoNev);
                      elem.setTextContent(ertek);
                      tantargy.appendChild(elem);
                  }
              }
 
-             //tantargy.setAttribute("class", clazz.getSimpleName());
              xml.getFirstChild().appendChild(tantargy);
              TransformerFactory tf = TransformerFactory.newInstance();
              Transformer t = tf.newTransformer();
@@ -271,14 +216,13 @@ public class Fio <T>{
              t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 
 
-
              DOMSource s = new DOMSource(xml);
              StreamResult r = new StreamResult(f);
              t.transform(s, r);
 
          }
          catch(Exception ex){
-             System.out.println("Hiba: " + ex.toString());
+             System.out.println("Hiba: " + ex);
              System.out.println(Arrays.toString(ex.getStackTrace()));
          }
      }
@@ -310,18 +254,15 @@ public class Fio <T>{
              Element rootElement = document.getDocumentElement();
              rootElement.setTextContent(felev.toString());
 
-
              Transformer transformer = TransformerFactory.newInstance().newTransformer();
              transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
              transformer.setOutputProperty(OutputKeys.INDENT, "yes");
              transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 
-
              Result output = new StreamResult(new File(felevFajlnev));
              Source input = new DOMSource(document);
 
              transformer.transform(input, output);
-
 
          } catch (ParserConfigurationException e) {
              e.printStackTrace();
@@ -352,63 +293,4 @@ public class Fio <T>{
          }
      }
 
-    /*public void mentes2(FelvehetoTantargy list, String fajlnev) {
-
-        Class clazz = list.get(0).getClass();
-        Class superclazz = clazz.getSuperclass();
-
-        try {
-            File f = new File(fajlnev);
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            Document xml = db.parse(f);
-            Element tantargy = xml.createElement("tantargy");
-
-            for(int i = 0; i < list.size(); i++) {
-                Field[] tulajdonsagok2 = superclazz.getDeclaredFields();
-                for (Field tul : tulajdonsagok2) {
-                    if(tul.getAnnotation(GetterFunctionName.class) != null){
-                        String gfn = tul.getAnnotation(GetterFunctionName.class).name();
-                        //előállítani a getter metódust:
-                        Method gm = clazz.getMethod(gfn);
-                        //Meghívni az entityre a method-ot:
-                        String ertek = gm.invoke(list.get(i)).toString();
-                        String valtozoNev = tul.getName();
-                        Element elem = xml.createElement(valtozoNev);
-                        elem.setTextContent(ertek);
-                        tantargy.appendChild(elem);
-                    }
-                }
-
-                Field[] tulajdonsagok = clazz.getDeclaredFields();
-                for(Field tul: tulajdonsagok) {
-                    if(tul.getAnnotation(GetterFunctionName.class) != null){
-                        String gfn = tul.getAnnotation(GetterFunctionName.class).name();
-                        //előállítani a getter metódust:
-                        Method gm = clazz.getMethod(gfn);
-                        //Meghívni az entityre a method-ot:
-                        String ertek = gm.invoke(list.get(i)).toString();
-                        String valtozoNev = tul.getName();
-                        Element elem = xml.createElement(valtozoNev);
-                        elem.setTextContent(ertek);
-                        tantargy.appendChild(elem);
-                    }
-                }
-            }
-
-
-            //tantargy.setAttribute("class", clazz.getSimpleName());
-            xml.getFirstChild().appendChild(tantargy);
-            TransformerFactory tf = TransformerFactory.newInstance();
-            Transformer t = tf.newTransformer();
-            DOMSource s = new DOMSource(xml);
-            StreamResult r = new StreamResult(f);
-            t.transform(s, r);
-
-        }
-        catch(Exception ex){
-            System.out.println("Hiba: " + ex.toString());
-            System.out.println(Arrays.toString(ex.getStackTrace()));
-        }
-    }*/
 }

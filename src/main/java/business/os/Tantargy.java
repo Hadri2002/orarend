@@ -1,7 +1,6 @@
 package business.os;
 
 import business.GetterFunctionName;
-import business.TeljesitettTantargy;
 import fio.Fio;
 
 public class Tantargy {
@@ -12,12 +11,10 @@ public class Tantargy {
     public static final String felevFajlnev = "src/main/resources/felev.xml";
 
     @GetterFunctionName(name="getNev")
-    private String nev;
+    private final String nev;
     @GetterFunctionName(name="getKredit")
-    private Integer kredit;
+    private final Integer kredit;
 
-    public Tantargy() {
-    }
     public Tantargy(String nev, Integer kredit) {
         this.nev = nev;
         if(kredit >= 0 && kredit <= 6) {

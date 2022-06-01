@@ -2,23 +2,8 @@ package Controller;
 
 import business.Methods;
 import fio.Fio;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.text.DecimalFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import static business.os.Tantargy.felvettFajlnev;
 import static business.os.Tantargy.teljesitettFajlnev;
 
@@ -38,11 +23,8 @@ public class Menu {
                     choice = scn.nextInt();
                     scn.nextLine();
                     if(choice == 0) {
-                        //vissza kell állítani a félévet 1-re!
                         Fio.felev = 1;
                         Fio.felevMentes(Fio.felev);
-                    //törölni kell az xml-ből mindent is!
-                        //a törlés működik, rakjuk külön metódusba? lehet az Fio inkább
                         Fio.xmlTorles(felvettFajlnev);
                         Fio.xmlTorles(teljesitettFajlnev);
 
@@ -70,7 +52,8 @@ public class Menu {
         int choice = -1;
         while (choice != 0) {
 
-            System.out.println("1 - Tantárgyak listázása\r\n2 - Új tantárgy felvétele\r\n3 - Tantárgy leadása\r\n4 - Félév teljesítése\r\n5 - Átlag/KKI számítás\r\n");
+            System.out.println("1 - Tantárgyak listázása\r\n2 - Új tantárgy felvétele\r\n3 - Tantárgy leadása\r\n4 - " +
+                    "Félév teljesítése\r\n5 - Átlag/KKI számítás\r\n");
             System.out.println("0 - Kilépés\n");
             try {
                 choice = scn.nextInt();
@@ -118,7 +101,8 @@ public class Menu {
                     break;
             }
 
-            System.out.println("\r\n1 - Felvehető tantárgyak listázása\r\n2 - Felvett tantárgyak listázása\r\n3 - Teljesített tantárgyak listázása\r\n");
+            System.out.println("\r\n1 - Felvehető tantárgyak listázása\r\n2 - Felvett tantárgyak listázása\r\n3 - " +
+                    "Teljesített tantárgyak listázása\r\n");
             System.out.println("0 - Vissza");
 
             try {
@@ -146,7 +130,6 @@ public class Menu {
 
     public static void tantargyLeadas(){
         Methods.felvettKiiratas(Fio.felvettTantargyak);
-        //ellenőrzés, hogy egyeltalán van-e leadható tárgya, viszont szerintem csúnyán írja ki szóval ez talán megoldandó
         if(Fio.felvettTantargyak.isEmpty()){
             System.err.println("Önnek nincsen még felvett tantárgya!");
             return;
@@ -166,9 +149,6 @@ public class Menu {
     public static void kiszamito() {
         System.out.println("Adja meg, hogy melyik félévének átlagát és KKI-ját kívánja megtekinteni: ");
 
-        //try catch integerrel adja meg a kívánt félévet
-        //csekkolni hogy létezik-e az a félév? while ciklussal elsőtől mostaniig
-        //meghívni Methods-ból a logikáját ahol kiszámolja
 
         int felev = -1;
         while (felev < 1 || felev >= Fio.felevBeolvasas()) {

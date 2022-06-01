@@ -3,14 +3,12 @@ package business;
 import business.os.Tantargy;
 import fio.Fio;
 
-import java.util.ArrayList;
-
 public class FelvehetoTantargy extends Tantargy {
 
     @GetterFunctionName(name="getElofelteteles")
-    private Boolean elofelteteles;
+    private final Boolean elofelteteles;
     @GetterFunctionName(name="getElofeltetel")
-    private String elofeltetel;
+    private final String elofeltetel;
 
     public Boolean getElofelteteles() {
         return elofelteteles;
@@ -24,7 +22,7 @@ public class FelvehetoTantargy extends Tantargy {
         super(nev, kredit);
         this.elofelteteles = elofelteteles;
 
-        if(this.elofelteteles == true) {
+        if(this.elofelteteles) {
             this.elofeltetel = elofeltetel;
         }
         else {
@@ -38,14 +36,10 @@ public class FelvehetoTantargy extends Tantargy {
         f.mentes(this, Tantargy.felvehetoFajlnev);
     }
 
-    /*public void beolvasas(){
-        Fio<FelvehetoTantargy> f = new Fio<FelvehetoTantargy>();
-        f.beolvasas(this);
-    }*/
 
     @Override
     public String toString() {
-        if (this.elofelteteles == true){
+        if (this.elofelteteles){
             return super.toString() + "Előfeltétel: " + this.elofeltetel + "\r\n";
         }
         else{

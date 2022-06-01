@@ -26,46 +26,46 @@ public class Methods {
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public static void felvehetoKiiratas (ArrayList<FelvehetoTantargy> felvehetoTargyak) {
-        for(FelvehetoTantargy targy: felvehetoTargyak) {
-            boolean tantargyLetezik = false; //false, ha ki kéne írni!
-            for(Tantargy targy2 : Fio.felvettTantargyak){
-                if(targy.getNev().equals(targy2.getNev())) {
-                    tantargyLetezik = true;
+        for(FelvehetoTantargy felvehetoTargy: felvehetoTargyak) {
+            boolean tantargyMarLetezik = false; //false, ha ki kell még írni a felvehetőek közt, true ha nem
+
+            for(Tantargy felvettTantargy : Fio.felvettTantargyak){
+                if(felvehetoTargy.getNev().equals(felvettTantargy.getNev())) {
+                    tantargyMarLetezik = true;
                     break;
                 }
-            }
-            for(TeljesitettTantargy targy3 : Fio.teljesitettTantargyak) { //akkor legyen true, ha benne van a teljesítettek között és nem egyest kapott?
-                if(targy.getNev().equals(targy3.getNev()) && targy3.getOsztalyzat().getErtek() != 1){
-                    tantargyLetezik = true;
-                    break;
-                }
-            }
-            if(!tantargyLetezik){
-                System.out.println(targy);
             }
 
+            for(TeljesitettTantargy teljesitettTantargy : Fio.teljesitettTantargyak) {
+                if(felvehetoTargy.getNev().equals(teljesitettTantargy.getNev()) && teljesitettTantargy.getOsztalyzat().getErtek() != 1){ //teljesítették, minimum 2-essel
+                    tantargyMarLetezik = true;
+                    break;
+                }
+            }
+            if(!tantargyMarLetezik){
+                System.out.println(felvehetoTargy);
+            }
         }
-
     }
 
-    public static void felvettKiiratas (ArrayList<Tantargy> targyak) {
-            for(Tantargy targy: targyak) {
-                System.out.println(targy);
+    public static void felvettKiiratas (ArrayList<Tantargy> felvettTantargyak) {
+            for(Tantargy felvettTantargy: felvettTantargyak) {
+                System.out.println(felvettTantargy);
             }
     }
 
-    public static void teljesitettKiiratas (ArrayList<TeljesitettTantargy> targyak) {
-        for(TeljesitettTantargy targy: targyak) {
-            System.out.println(targy);
+    public static void teljesitettKiiratas (ArrayList<TeljesitettTantargy> teljesitettTantargyak) {
+        for(TeljesitettTantargy teljesitettTantargy: teljesitettTantargyak) {
+            System.out.println(teljesitettTantargy);
         }
     }
 
     public static void tantargyFelvetel(String felvenniKivantTargy) {
         boolean tantargyLetezik = false;
 
-        for(FelvehetoTantargy tantargy: Fio.felvehetoTantargyak) {
+        for(FelvehetoTantargy felvehetoTantargy: Fio.felvehetoTantargyak) {
 
-            if(felvenniKivantTargy.equals(tantargy.getNev())) { //tehát létezik a tantárgy a listázottak között
+            if(felvenniKivantTargy.equals(felvehetoTantargy.getNev())) { //tehát létezik a tantárgy a listázottak között
                 tantargyLetezik = true;
 
                 //meg kell nézni, hogy teljesítettük-e már!
@@ -86,10 +86,10 @@ public class Methods {
                     }
                 }
 
-                if(tantargy.getElofelteteles()) {
+                if(felvehetoTantargy.getElofelteteles()) {
                     boolean elofeltetelTeljesitve = false;
                     for(TeljesitettTantargy teljesitett: Fio.teljesitettTantargyak) {
-                        if(tantargy.getElofeltetel().equals(teljesitett.getNev())) {
+                        if(felvehetoTantargy.getElofeltetel().equals(teljesitett.getNev())) {
 
                             elofeltetelTeljesitve = true;
                             break;
@@ -100,15 +100,13 @@ public class Methods {
                         return;
                     }
                 }
-
-                Tantargy felvettTantargy = new Tantargy(tantargy.getNev(), tantargy.getKredit());
+                Tantargy felvettTantargy = new Tantargy(felvehetoTantargy.getNev(), felvehetoTantargy.getKredit());
                 Fio.felvettTantargyak.add(felvettTantargy);
                 felvettTantargy.mentes();
                 System.out.println("\r\nSikeresen felvette a tantárgyat!\r\n");
                 break;
             }
         }
-
         if(!tantargyLetezik) {
             System.err.println("\r\nNem létezik a beírt tantárgy!\r\n");
         }
@@ -129,7 +127,6 @@ public class Methods {
 
                     System.out.println("Sikeresen leadta a tantárgyat!");
 
-                    //változtatások mentése az xml fileba (elvileg szükséges, meglátjuk elhagyható-e) ->IGEN SZÜKSÉGES
                     Transformer transformer = TransformerFactory.newInstance().newTransformer();
                     Result output = new StreamResult(new File(felvettFajlnev));
                     Source input = new DOMSource(document);
@@ -150,10 +147,8 @@ public class Methods {
 
     public static void felevLepes() {
 
-        //végig kéne menni a felvett tantárgyakon
         for(Tantargy targy : Fio.felvettTantargyak){
-            //while-ba kéne! osztalyzat < 1 || osztalyzat > 5
-            boolean helyesOsztalyzat = false;
+            boolean helyesOsztalyzat = false;  //false amíg megfelelő osztályzatot nem ad meg a felhasználó
 
             while(!helyesOsztalyzat) {
                 System.out.println("Adja meg hányast kapott az adott tárgyból!");
@@ -161,8 +156,6 @@ public class Methods {
                 try {
                     System.out.println("Osztályzat: ");
                     int osztalyzatErtek;
-                    //kéne ide egy try, breakelünk ha nem számot ad
-                    //akkor is kéne egy break ha nem 1-5-ig van a szám!
                     osztalyzatErtek = scn.nextInt();
                     scn.nextLine();
 
@@ -200,18 +193,12 @@ public class Methods {
     }
 
     public static void kiszamito(Integer felev) {
-        //végig kéne menni for ciklussal a teljesített tárgyakon hogy megkeressük az adott félévi tantárgyakat
-        //súlyozott? átlag kiszámoláshoz sum teljesitett kredit * erdemjegy (atlagosszeg) / osszes teljesitett kredit
-        //KKI: kreditindex * osszes teljesitett kredit / osszes vallalt kredit
-        //kreditindex: sum teljesitett kredit * erdemjegy / 30
-
         double osszesTeljesitettKredit = 0.0, osszesVallaltKredit = 0.0, atlagOsszeg = 0.0;
 
         for(TeljesitettTantargy tantargy: Fio.teljesitettTantargyak) {
             if(Objects.equals(tantargy.getFelev(), felev)) {
 
                 osszesVallaltKredit += tantargy.getKredit();
-
 
                 if(tantargy.getOsztalyzat().getErtek() != 1) {
                     atlagOsszeg += (tantargy.getKredit() * tantargy.getOsztalyzat().getErtek());
