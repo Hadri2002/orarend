@@ -140,41 +140,60 @@ A generikus XML mentésben segédkező osztály
 
 **Main**
 
+*Feladat:*
+* Összefogja a programot, meghívja a startup metódust
 
 XML fájlok
 ------
 
 **felev.xml**
 
-* felev - a fájl gyökere és egyetlen eleme, az aktuális félév számát tartalmazza
+* felev
+    * a fájl gyökere és egyetlen eleme, az aktuális félév számát tartalmazza
 
 **felvehetoTargyak.xml**
 
 A szak által felvehető tantárgyakat és adatait tárolja a FelvehetoTantargy osztály tulajdonságai alapján
 
-* tantargyak - a fájl gyökere, tartalmazza a különböző tantárgyakat
-* tantargy - egy tantárgy adatait tartalmazza
-* nev - az adott tantárgy nevét tartalmazza
-* kredit - az adott tantárgy teljesítéséért járó kreditek számát tartalmazza
-* elofelteteles - az adott tantárgy előfeltételességét tartalmazza, ha a tárgynak van előfeltétele az értéke “true”, ha nincs, “false”
-* elofeltetel - az adott tantárgy előfeltételét tartalmazza, ha nincs, akkor az értéke “NINCS”
+* tantargyak 
+    * a fájl gyökere, tartalmazza a különböző tantárgyakat
+* tantargy 
+    * egy tantárgy adatait tartalmazza
+* nev 
+    * az adott tantárgy nevét tartalmazza
+* kredit
+    * az adott tantárgy teljesítéséért járó kreditek számát tartalmazza
+* elofelteteles 
+    * az adott tantárgy előfeltételességét tartalmazza, ha a tárgynak van előfeltétele az értéke “true”, ha nincs, “false”
+* elofeltetel 
+    * az adott tantárgy előfeltételét tartalmazza, ha nincs, akkor az értéke “NINCS”
 
 **felvettTargyak.xml**
 
 A hallgató által felvett és még nem teljesített tantárgyak adatait tartalmazza a Tantargy osztály tulajdonságai alapján
 
-* tantargyak - a fájl gyökere, tartalmazza a különböző tantárgyakat
-* tantargy - a felvett tantárgy adatait tartalmazza
-* nev - a felvett tantárgy nevét tartalmazza
-* kredit -a felvett tantárgy teljesítéséért járó kreditek számát tartalmazza
+* tantargyak 
+    * a fájl gyökere, tartalmazza a különböző tantárgyakat
+* tantargy 
+    * a felvett tantárgy adatait tartalmazza
+* nev 
+    * a felvett tantárgy nevét tartalmazza
+* kredit 
+    * a felvett tantárgy teljesítéséért járó kreditek számát tartalmazza
 
 **teljesitettTargyak.xml**
 
 A hallgató által teljesített tantárgyak adatait tartalmazza a TeljesitettTantargy osztály tulajdonságai alapján
 
-* tantargyak - a fájl gyökere, tartalmazza a különböző tantárgyakat
-* tantargy -  a teljesített tantárgy adatait tartalmazza
-* nev - a teljesített tantárgy nevét tartalmazza
-* kredit - a teljesített tantárgyért járó kreditek számát tartalmazza
-* osztalyzat - a  teljesített tantárgyért járó osztályzatot tartalmazza
-* felev - annak a félévnek a számát tartalmazza amelyben az adott tantárgyat teljesítette a hallgató
+* tantargyak 
+    * a fájl gyökere, tartalmazza a különböző tantárgyakat
+* tantargy 
+    * a teljesített tantárgy adatait tartalmazza
+* nev 
+    * a teljesített tantárgy nevét tartalmazza
+* kredit 
+    * a teljesített tantárgyért járó kreditek számát tartalmazza
+* osztalyzat 
+    * a  teljesített tantárgyért járó osztályzatot tartalmazza
+* felev 
+    * annak a félévnek a számát tartalmazza amelyben az adott tantárgyat teljesítette a hallgató
