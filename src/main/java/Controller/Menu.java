@@ -14,39 +14,42 @@ public class Menu {
 
     public static void startup() {
         System.out.println("Üdvözöllek a tantárgyfelvételi programban!\r\n");
+        System.out.println("Ön jelenleg a "+Fio.felev+". félévben van.\r\n");
 
         if(Fio.felvettTantargyak.size() > 0 || Fio.teljesitettTantargyak.size() > 0) {
-            System.out.println("Folytatni kívánod az elmentett adatokkal?\r\n0 - nem\r\n1 - igen");
             int choice = -1;
-            try{
-                while(choice != 0 || choice != 1) {
+            while(choice!=0 && choice!=1){
+                System.out.println("Folytatni kívánod az elmentett adatokkal?\r\n0 - Nem\r\n1 - Igen");
+                try{
                     choice = scn.nextInt();
                     scn.nextLine();
-                    if(choice == 0) {
-                        Fio.felev = 1;
-                        Fio.felevMentes(Fio.felev);
-                        Fio.xmlTorles(felvettFajlnev);
-                        Fio.xmlTorles(teljesitettFajlnev);
 
-                        Fio.felvettTantargyak.clear();
-                        Fio.teljesitettTantargyak.clear();
-                        break;
+                    switch (choice){
+                        case 0:
+                            Fio.felev = 1;
+                            Fio.felevMentes(Fio.felev);
+                            Fio.xmlTorles(felvettFajlnev);
+                            Fio.xmlTorles(teljesitettFajlnev);
+                            Fio.felvettTantargyak.clear();
+                            Fio.teljesitettTantargyak.clear();
+                            break;
+                        case 1:
+                            break;
+                        default:
+                            System.err.println("\r\nA menüpontok 0 és 1 között vannak!\r\n");
+                            break;
                     }
-                    else if(choice == 1) {
-                        break;
-                    }
-                    else System.err.println("Csak 0-t vagy 1-et adhat meg!");
+
+                }catch (InputMismatchException ex) {
+                    System.err.println("\r\nCsak számokat adhat meg!\r\n");
+                    scn.nextLine();
                 }
-            }
-            catch(InputMismatchException e){
-                System.err.println("Csak számokat adhat meg!");
-                e.printStackTrace();
-            }
 
-
+            }
         }
         mainMenu();
     }
+
 
     public static void mainMenu() {
         int choice = -1;
